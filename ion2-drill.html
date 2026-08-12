@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0050)file:///C:/Users/tinbu/Downloads/ion2-drill_1.html -->
+<!-- saved from url=(0050)file:///C:/Users/tinbu/Downloads/ion2-drill_2.html -->
 <html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -156,6 +156,8 @@ code { font-family: "Courier New", monospace; font-weight: 700; font-size: 13px;
 
 <nav class="topnav">
   <span class="brand">⚗️ GAMBA 中学理科</span>
+  <span class="sep">|</span>
+  <a href="file:///C:/Users/tinbu/Downloads/jscieincetangen.html">📋 単元表</a>
   <span class="sep">|</span>
   <a href="file:///C:/Users/tinbu/Downloads/ion2.html">第2回 テキスト</a>
   <span class="sep">|</span>
@@ -414,6 +416,8 @@ function updateGlobal() {
     document.getElementById('global-msg').textContent = '問題を解いてみよう！';
   } else if (correct === TOTAL) {
     document.getElementById('global-msg').textContent = '🎉 全問正解！完璧です！';
+    var sb = document.querySelector('.scoreboard');
+    if (sb && !sb.dataset.confettiFired) { sb.dataset.confettiFired = '1'; launchConfetti(); }
   } else {
     document.getElementById('global-msg').textContent = '正解率 ' + pct + '%　— 頑張れ！';
   }
@@ -492,6 +496,7 @@ function updateSecResult(sec) {
   const resId = sec.querySelector('.sec-result').id;
   if (items.length === total) {
     document.getElementById(resId).textContent = '✅ このセクション：' + correct + ' / ' + total + ' 正解';
+    if (correct === total) launchConfetti();
   } else {
     document.getElementById(resId).textContent = correct + ' / ' + items.length + ' 正解中';
   }
@@ -513,6 +518,42 @@ function resetAll() {
 // 初期化
 document.querySelectorAll('.section').forEach(sec => setupSection(sec));
 updateGlobal();
+
+/* ===== 花吹雪 ===== */
+function launchConfetti() {
+  var canvas = document.createElement('canvas');
+  canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;';
+  document.body.appendChild(canvas);
+  var ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  var colors = ['#FF6B6B','#FFE66D','#4ECDC4','#A8E6CF','#FF8B94','#CE93D8','#81C784','#FFB74D','#64B5F6'];
+  var particles = [];
+  for (var i = 0; i < 180; i++) {
+    particles.push({
+      x: Math.random() * canvas.width, y: -20 - Math.random() * 120,
+      w: Math.random() * 14 + 4, h: Math.random() * 7 + 3,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      vx: Math.random() * 5 - 2.5, vy: Math.random() * 3 + 2,
+      angle: Math.random() * Math.PI * 2, va: Math.random() * 0.18 - 0.09
+    });
+  }
+  var frame;
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    var alive = false;
+    particles.forEach(function(p) {
+      p.x += p.vx; p.y += p.vy; p.angle += p.va; p.vy += 0.04;
+      if (p.y < canvas.height + 20) alive = true;
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.angle);
+      ctx.fillStyle = p.color; ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+      ctx.restore();
+    });
+    if (alive) frame = requestAnimationFrame(draw);
+    else { cancelAnimationFrame(frame); if (canvas.parentNode) canvas.remove(); }
+  }
+  draw();
+  setTimeout(function() { cancelAnimationFrame(frame); if (canvas.parentNode) canvas.remove(); }, 5000);
+}
 </script>
 
 
