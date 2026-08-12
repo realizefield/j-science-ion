@@ -1,0 +1,2784 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>イオン講座 第1回 電解質・原子・イオン | GAMBA中学理科</title>
+<style>
+/* ========================================
+   GAMBA 中学理科 – アプリスタイル (ion1 埋め込み版)
+   ======================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Hiragino Kaku Gothic ProN", "Meiryo", "Yu Gothic", sans-serif;
+  background: #F0F4F8;
+  color: #1a1a2e;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ── ナビゲーション ── */
+.topnav {
+  background: #1a237e;
+  color: #fff;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 6px rgba(0,0,0,.3);
+}
+.topnav .brand { font-weight: 700; font-size: 15px; letter-spacing: .3px; }
+.topnav .sep { color: rgba(255,255,255,.4); }
+.topnav a { color: #90CAF9; text-decoration: none; font-size: 13px; }
+.topnav a:hover { color: #fff; text-decoration: underline; }
+
+/* ── ラッパー ── */
+.wrap { max-width: 820px; margin: 0 auto; padding: 0 12px 60px; }
+
+/* ── ヒーローヘッダー ── */
+.hero {
+  background: linear-gradient(135deg, #1565C0 0%, #0D47A1 60%, #311B92 100%);
+  color: #fff;
+  padding: 28px 24px 22px;
+  margin: 0 -12px 22px;
+  position: relative;
+}
+.hero .crumb { font-size: 12px; opacity: .75; margin-bottom: 6px; letter-spacing: .5px; }
+.hero h1 { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
+.hero .sub { font-size: 13.5px; opacity: .88; line-height: 1.6; }
+.stars { font-size: 16px; vertical-align: middle; margin-left: 6px; }
+
+/* ── ユニット(章カード) ── */
+.unit {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.08);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.unit-title {
+  background: linear-gradient(90deg, #1565C0, #1976D2);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.unit-title .num {
+  background: #fff;
+  color: #1565C0;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+/* ── ステージ(説明ブロック) ── */
+.stage {
+  margin: 12px 14px;
+  border: 1.5px solid #BBDEFB;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.stage-head {
+  background: #E3F2FD;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  border-bottom: 1px solid #BBDEFB;
+}
+.stage-label {
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+.stage-label.read {
+  background: #1565C0;
+  color: #fff;
+}
+.stage-actions { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+
+.audio-btn {
+  background: #fff;
+  border: 1.5px solid #90CAF9;
+  color: #1565C0;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+  transition: background .15s;
+}
+.audio-btn:hover { background: #E3F2FD; }
+
+.ch-btn {
+  border: none;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity .15s;
+}
+.ch-btn:hover { opacity: .85; }
+.ch-btn.start  { background: #FF8F00; color: #fff; }
+.ch-btn.judge  { background: #2E7D32; color: #fff; }
+.ch-btn.example{ background: #6A1B9A; color: #fff; }
+.ch-btn.reset  { background: #546E7A; color: #fff; }
+.ch-btn.cancel { background: #B71C1C; color: #fff; }
+.challenge-timer { font-size: 13px; font-weight: 700; color: #E53935; }
+
+/* ── 読み取りボックス ── */
+.read-box {
+  padding: 16px 18px;
+  line-height: 1.8;
+}
+.read-box p { margin-bottom: 10px; }
+.read-box p:last-child { margin-bottom: 0; }
+
+/* ── キーワード系 ── */
+.kw {
+  background: #FFF8E1;
+  color: #E65100;
+  font-weight: 700;
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+.kw-blank {
+  display: inline-block;
+  min-width: 5em;
+  border-bottom: 2px solid #1565C0;
+  color: #1565C0;
+  font-weight: 700;
+  padding: 0 4px;
+  cursor: default;
+  transition: background .15s;
+}
+.kw-blank.active {
+  background: #FFF8E1;
+  border-radius: 4px;
+  border-color: #FF8F00;
+  color: #E65100;
+}
+
+/* ── ポイントボックス ── */
+.point-box {
+  background: #FFFDE7;
+  border-left: 5px solid #FFB300;
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px;
+  margin: 12px 14px;
+  font-size: 14px;
+}
+.point-box .label {
+  font-weight: 800;
+  color: #E65100;
+  font-size: 13.5px;
+  display: block;
+  margin-bottom: 6px;
+}
+.point-box ul { list-style: none; padding: 0; }
+.point-box ul li {
+  padding: 3px 0 3px 20px;
+  position: relative;
+}
+.point-box ul li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #FF8F00;
+  font-size: 12px;
+}
+
+/* ── 語群(チャレンジ用) ── */
+.word-bank-inline {
+  display: none;
+  background: #F3E5F5;
+  border-top: 1px dashed #CE93D8;
+  padding: 10px 14px;
+}
+.word-bank-inline.visible { display: block; }
+.wb-title { font-size: 12px; font-weight: 700; color: #6A1B9A; margin-bottom: 6px; }
+.wb-words { display: flex; flex-wrap: wrap; gap: 6px; }
+.wb-word {
+  background: #fff;
+  border: 1.5px solid #9C27B0;
+  color: #6A1B9A;
+  border-radius: 16px;
+  padding: 3px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s;
+}
+.wb-word:hover, .wb-word.selected { background: #9C27B0; color: #fff; }
+.wb-word.used { opacity: .35; pointer-events: none; }
+
+/* ── ミニテスト(○×) ── */
+.minitest-block {
+  margin: 12px 14px;
+  border: 1.5px solid #C8E6C9;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.mt-block-title {
+  background: #2E7D32;
+  color: #fff;
+  font-weight: 700;
+  font-size: 13.5px;
+  padding: 8px 14px;
+}
+.minitest {
+  padding: 12px 14px 14px;
+  border-bottom: 1px solid #E8F5E9;
+}
+.minitest:last-of-type { border-bottom: none; }
+.mt-stem { font-size: 14px; margin-bottom: 8px; line-height: 1.6; }
+.mt-num {
+  display: inline-block;
+  background: #2E7D32;
+  color: #fff;
+  border-radius: 4px;
+  padding: 1px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.mt-choices { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
+.mt-c {
+  background: #fff;
+  border: 2px solid #4CAF50;
+  color: #2E7D32;
+  border-radius: 8px;
+  padding: 6px 22px;
+  font-size: 18px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all .15s;
+  min-width: 60px;
+}
+.mt-c:hover { background: #E8F5E9; }
+.mt-c.correct { background: #4CAF50; border-color: #388E3C; color: #fff; }
+.mt-c.incorrect { background: #EF5350; border-color: #C62828; color: #fff; }
+.mt-c.disabled { pointer-events: none; opacity: .5; }
+.mt-exp {
+  display: none;
+  background: #F1F8E9;
+  border-left: 4px solid #4CAF50;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 13.5px;
+  margin-top: 6px;
+  line-height: 1.6;
+}
+.mt-exp.show-err { background: #FFEBEE; border-color: #EF5350; }
+.mt-exp.visible { display: block; }
+
+/* ── 4択問題(q4) ── */
+.q4 {
+  padding: 12px 14px 14px;
+  border-bottom: 1px solid #E8F5E9;
+}
+.q4:last-of-type { border-bottom: none; }
+.q4-stem { font-size: 14px; margin-bottom: 8px; line-height: 1.6; }
+.q4-num {
+  display: inline-block;
+  background: #1565C0;
+  color: #fff;
+  border-radius: 4px;
+  padding: 1px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.q4-choices { display: flex; flex-direction: column; gap: 6px; margin-bottom: 6px; }
+.q4-c {
+  background: #fff;
+  border: 1.5px solid #90CAF9;
+  color: #0D47A1;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 13.5px;
+  cursor: pointer;
+  text-align: left;
+  transition: all .15s;
+  width: 100%;
+}
+.q4-c:hover { background: #E3F2FD; border-color: #1565C0; }
+.q4-c.correct { background: #4CAF50; border-color: #388E3C; color: #fff; font-weight: 700; }
+.q4-c.incorrect { background: #EF5350; border-color: #C62828; color: #fff; }
+.q4-c.disabled { pointer-events: none; }
+.q4-exp {
+  display: none;
+  background: #E8F5E9;
+  border-left: 4px solid #4CAF50;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 13.5px;
+  margin-top: 6px;
+  line-height: 1.6;
+}
+.q4-exp.visible { display: block; }
+
+/* ── ブロック結果・リセット ── */
+.mt-block-result {
+  padding: 10px 14px;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  min-height: 18px;
+}
+.mt-block-reset {
+  background: #546E7A;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 0 0 12px;
+  display: block;
+  margin: 4px auto 14px;
+  transition: background .15s;
+}
+.mt-block-reset:hover { background: #37474F; }
+
+/* ── 図+表レイアウト ── */
+.fig-with-table {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+  align-items: flex-start;
+}
+.fig-main { flex: 1 1 240px; }
+.fig-main img {
+  max-width: 100%;
+  border-radius: 8px;
+  border: 1px solid #BBDEFB;
+  padding: 4px;
+  background: #fff;
+  display: block;
+}
+.caption {
+  font-size: 12px;
+  color: #555;
+  margin-top: 4px;
+  text-align: center;
+}
+.fig-side { flex: 1 1 200px; }
+.fig-side-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  background: #E3F2FD;
+  padding: 4px 10px;
+  border-radius: 6px 6px 0 0;
+  color: #0D47A1;
+}
+.fig-side dl { border: 1px solid #BBDEFB; border-top: none; border-radius: 0 0 6px 6px; overflow: hidden; }
+.fig-side dt {
+  background: #1565C0;
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-bottom: 1px solid #BBDEFB;
+}
+.fig-side dd {
+  padding: 6px 10px;
+  font-size: 13px;
+  border-bottom: 1px solid #E3F2FD;
+  background: #fff;
+}
+.fig-side dd:last-child { border-bottom: none; }
+.term { font-weight: 700; color: #1565C0; }
+
+/* ── イオン式テーブル ── */
+.ion-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  margin: 10px 0;
+}
+.ion-table th {
+  background: #1565C0;
+  color: #fff;
+  padding: 7px 12px;
+  text-align: left;
+  border: 1px solid #0D47A1;
+}
+.ion-table td {
+  padding: 7px 12px;
+  border: 1px solid #C8E6C9;
+}
+.ion-table tr:nth-child(even) td { background: #F1F8E9; }
+.ion-table .ion-plus th { background: #C62828; }
+.ion-table .ion-minus th { background: #1A237E; }
+.ion-formula { font-family: "Courier New", monospace; font-weight: 700; font-size: 14px; }
+
+/* ── 電離式テーブル ── */
+.dri-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin: 10px 0;
+  overflow-x: auto;
+}
+.dri-table th {
+  background: #2E7D32;
+  color: #fff;
+  padding: 8px 12px;
+  text-align: left;
+  border: 1px solid #1B5E20;
+  white-space: nowrap;
+}
+.dri-table td {
+  padding: 8px 14px;
+  border: 1px solid #C8E6C9;
+  font-family: "Courier New", monospace;
+}
+.dri-table tr:nth-child(even) td { background: #F1F8E9; }
+.dri-table .dri-name { font-family: inherit; font-weight: 600; }
+
+/* ── ランキング ── */
+.ranking {
+  background: #FFF8E1;
+  border-top: 1px solid #FFE082;
+  padding: 14px 16px;
+}
+.ranking h3 { font-size: 14px; font-weight: 700; margin-bottom: 8px; color: #E65100; }
+.ranking-list { list-style: none; padding: 0; }
+.ranking-list li {
+  font-size: 13px;
+  padding: 3px 0;
+  border-bottom: 1px dashed #FFE082;
+}
+.ranking-list li:last-child { border-bottom: none; }
+.btn.outline {
+  background: transparent;
+  border: 1.5px solid #90A4AE;
+  color: #546E7A;
+  border-radius: 16px;
+  padding: 3px 14px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background .15s;
+}
+.btn.outline:hover { background: #ECEFF1; }
+
+/* ── 次のアクション ── */
+.next-actions {
+  background: #E8F5E9;
+  border: 2px solid #A5D6A7;
+  border-radius: 14px;
+  padding: 22px 20px;
+  text-align: center;
+  margin: 28px 0 18px;
+}
+.next-actions h3 { font-size: 18px; font-weight: 800; color: #1B5E20; margin-bottom: 8px; }
+.next-actions p { font-size: 14px; color: #2E7D32; margin-bottom: 14px; }
+.next-actions .links { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.next-actions .links a {
+  background: #2E7D32;
+  color: #fff;
+  text-decoration: none;
+  padding: 9px 20px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: background .15s;
+}
+.next-actions .links a:hover { background: #1B5E20; }
+
+/* ── ページナビ ── */
+.pagenav {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  margin: 16px 0;
+}
+.pagenav a {
+  flex: 1;
+  background: #fff;
+  border: 2px solid #90CAF9;
+  border-radius: 10px;
+  padding: 12px 14px;
+  text-decoration: none;
+  color: #1565C0;
+  transition: background .15s;
+  min-width: 0;
+}
+.pagenav a:hover { background: #E3F2FD; }
+.pagenav a.next { text-align: right; }
+.pagenav .label { font-size: 11px; font-weight: 700; opacity: .7; display: block; }
+.pagenav .title { font-size: 13.5px; font-weight: 700; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ── 緑カラー情報ブロック ── */
+.info-box {
+  background: #E8F5E9;
+  border-left: 4px solid #2E7D32;
+  border-radius: 0 8px 8px 0;
+  padding: 10px 14px;
+  margin: 10px 0;
+  font-size: 14px;
+}
+.info-box strong { color: #1B5E20; }
+
+/* ── イオン2列レイアウト ── */
+.ion-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 12px 0;
+}
+.ion-card {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,.1);
+}
+.ion-card-head {
+  font-weight: 700;
+  padding: 6px 12px;
+  font-size: 13.5px;
+}
+.ion-card.plus .ion-card-head { background: #FFCDD2; color: #B71C1C; }
+.ion-card.minus .ion-card-head { background: #BBDEFB; color: #0D47A1; }
+.ion-card table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.ion-card td { padding: 5px 10px; border-bottom: 1px solid #F5F5F5; }
+.ion-card tr:last-child td { border-bottom: none; }
+.ion-card tr:nth-child(even) td { background: #FAFAFA; }
+
+/* ── レスポンシブ ── */
+@media (max-width: 520px) {
+  .hero { padding: 20px 14px 16px; margin: 0 -12px 16px; }
+  .hero h1 { font-size: 18px; }
+  .ion-grid { grid-template-columns: 1fr; }
+  .pagenav { flex-direction: column; }
+  .pagenav a.next { text-align: left; }
+}
+
+/* ============================================
+   暗記ドリル 起動ボタン & モーダル
+   ============================================ */
+.drill-open-btn {
+  background: linear-gradient(135deg, #FF8F00, #FFA000);
+  color: #fff; border: none; border-radius: 26px;
+  padding: 13px 32px; font-size: 15px; font-weight: 800;
+  cursor: pointer; box-shadow: 0 3px 14px rgba(255,143,0,.4);
+  transition: opacity .15s;
+}
+.drill-open-btn:hover { opacity: .85; }
+
+#d-overlay {
+  position: fixed; inset: 0;
+  background: rgba(10,20,60,.7);
+  z-index: 500;
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 14px 10px; overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+#d-modal {
+  background: #F0F4F8; border-radius: 18px;
+  width: 100%; max-width: 560px;
+  padding: 18px 14px 26px; position: relative;
+  margin: auto; box-shadow: 0 8px 40px rgba(0,0,0,.4);
+}
+#d-close {
+  position: absolute; top: 12px; right: 12px;
+  background: rgba(0,0,0,.2); border: none; border-radius: 50%;
+  width: 34px; height: 34px; font-size: 18px; line-height: 1;
+  cursor: pointer; color: #fff; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s;
+}
+#d-close:hover { background: rgba(0,0,0,.38); }
+#d-modal .d-title { font-size: 17px; font-weight: 800; color: #1565C0; margin-bottom: 14px; padding-right: 42px; }
+
+/* ドリル内スタイル（#d-modal にスコープ） */
+#d-modal .d-tabs    { display:flex; gap:8px; margin-bottom:12px; }
+#d-modal .d-tab     { flex:1; background:#fff; border:2px solid #90CAF9; color:#1565C0; border-radius:10px; padding:9px 6px; font-size:13px; font-weight:700; cursor:pointer; text-align:center; transition:all .15s; }
+#d-modal .d-tab.active { background:#1565C0; color:#fff; border-color:#1565C0; }
+
+#d-modal .d-dir     { display:flex; gap:6px; margin-bottom:9px; }
+#d-modal .d-dir-btn { flex:1; background:#fff; border:1.5px solid #BBDEFB; color:#1565C0; border-radius:20px; padding:6px 6px; font-size:12.5px; font-weight:700; cursor:pointer; text-align:center; transition:all .15s; }
+#d-modal .d-dir-btn.active { background:#1565C0; color:#fff; border-color:#1565C0; }
+
+#d-modal .d-speed   { display:flex; gap:5px; margin-bottom:9px; }
+#d-modal .d-spd     { flex:1; background:#fff; border:1.5px solid #CFD8DC; color:#546E7A; border-radius:20px; padding:5px 3px; font-size:12px; font-weight:700; cursor:pointer; text-align:center; transition:all .15s; }
+#d-modal .d-spd:hover { background:#ECEFF1; border-color:#90A4AE; }
+#d-modal .d-spd.sm.active { background:#546E7A; color:#fff; border-color:#546E7A; }
+#d-modal .d-spd.sa.active { background:#FF8F00; color:#fff; border-color:#FF8F00; }
+
+#d-modal .d-cdwrap  { height:5px; background:#E3F2FD; border-radius:3px; margin-bottom:8px; overflow:hidden; }
+#d-modal .d-cdfill  { height:100%; width:100%; background:linear-gradient(90deg,#FF8F00,#FFB300); border-radius:3px; }
+
+#d-modal .d-prow    { display:flex; align-items:center; gap:8px; margin-bottom:10px; font-size:12px; }
+#d-modal .d-pbar    { flex:1; height:8px; background:#E3F2FD; border-radius:4px; overflow:hidden; }
+#d-modal .d-pfill   { height:100%; background:linear-gradient(90deg,#43A047,#81C784); border-radius:4px; transition:width .4s; }
+#d-modal .d-ptxt    { font-weight:700; color:#2E7D32; white-space:nowrap; min-width:46px; text-align:right; }
+
+#d-modal .d-scene   { perspective:900px; margin:0 auto 7px; width:100%; height:185px; cursor:pointer; user-select:none; -webkit-user-select:none; }
+#d-modal .d-card3d  { width:100%; height:100%; position:relative; transform-style:preserve-3d; transition:transform .45s; }
+#d-modal .d-card3d.flipped { transform:rotateY(180deg); }
+#d-modal .d-face    { position:absolute; inset:0; border-radius:16px; backface-visibility:hidden; -webkit-backface-visibility:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:15px; box-shadow:0 3px 14px rgba(0,0,0,.12); }
+#d-modal .d-front   { background:#fff; border:2.5px solid #90CAF9; }
+#d-modal .d-back    { background:#E8EAF6; border:2.5px solid #3949AB; transform:rotateY(180deg); }
+#d-modal .d-clabel  { font-size:11px; font-weight:700; color:#90A4AE; margin-bottom:5px; }
+#d-modal .d-back .d-clabel { color:#5C6BC0; }
+#d-modal .d-ccnt    { font-size:25px; font-weight:800; color:#1565C0; text-align:center; line-height:1.4; }
+#d-modal .d-back .d-ccnt { font-size:29px; color:#283593; }
+#d-modal .d-badge   { font-size:11px; font-weight:700; padding:2px 12px; border-radius:12px; margin-top:8px; }
+#d-modal .d-badge.plus  { background:#FFCDD2; color:#B71C1C; }
+#d-modal .d-badge.minus { background:#BBDEFB; color:#0D47A1; }
+
+#d-modal .d-fhint   { text-align:center; font-size:12px; color:#90A4AE; margin-bottom:8px; min-height:16px; }
+#d-modal .d-jarea   { display:flex; gap:8px; justify-content:center; margin-bottom:12px; min-height:44px; }
+#d-modal .d-jbtn    { flex:1; max-width:175px; border:none; border-radius:24px; padding:11px 12px; font-size:14px; font-weight:800; cursor:pointer; transition:opacity .15s; }
+#d-modal .d-jbtn:hover { opacity:.85; }
+#d-modal .d-ok      { background:#4CAF50; color:#fff; }
+#d-modal .d-ng      { background:#EF5350; color:#fff; }
+#d-modal .d-remain  { text-align:center; font-size:12px; color:#78909C; margin-bottom:10px; }
+
+#d-modal .d-rbox    { background:#fff; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,.08); padding:20px 14px; text-align:center; margin-bottom:12px; }
+#d-modal .d-rbox h2 { font-size:19px; font-weight:800; color:#1565C0; margin-bottom:8px; }
+#d-modal .d-nglist  { background:#FFEBEE; border:1px solid #FFCDD2; border-radius:10px; padding:10px 14px; margin:0 auto 12px; text-align:left; }
+#d-modal .d-nglist h3 { font-size:13px; font-weight:700; color:#C62828; margin-bottom:6px; }
+#d-modal .d-ngitem  { display:flex; justify-content:space-between; align-items:center; padding:4px 0; border-bottom:1px dashed #FFCDD2; font-size:13px; font-weight:700; }
+#d-modal .d-ngitem:last-child { border-bottom:none; }
+#d-modal .d-ngf     { color:#C62828; }
+
+#d-modal .d-bp      { background:#1565C0; color:#fff; border:none; border-radius:24px; padding:9px 20px; font-size:13px; font-weight:700; cursor:pointer; margin:3px; transition:background .15s; }
+#d-modal .d-bp:hover { background:#0D47A1; }
+#d-modal .d-bg      { background:#2E7D32; color:#fff; border:none; border-radius:24px; padding:9px 20px; font-size:13px; font-weight:700; cursor:pointer; margin:3px; transition:background .15s; }
+#d-modal .d-bg:hover { background:#1B5E20; }
+
+#d-modal .d-qhdr    { display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:700; color:#546E7A; margin-bottom:10px; }
+#d-modal .d-qscore  { color:#2E7D32; }
+#d-modal .d-qcard   { background:#fff; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,.08); padding:18px 14px; margin-bottom:12px; }
+#d-modal .d-qstem   { font-size:13px; font-weight:700; color:#546E7A; margin-bottom:4px; }
+#d-modal .d-qmain   { font-size:27px; font-weight:800; color:#1565C0; text-align:center; padding:12px 0 14px; min-height:64px; display:flex; align-items:center; justify-content:center; }
+#d-modal .d-qlist   { display:flex; flex-direction:column; gap:7px; }
+#d-modal .d-qc      { background:#fff; border:1.5px solid #90CAF9; color:#0D47A1; border-radius:9px; padding:10px 14px; font-size:13.5px; font-weight:700; cursor:pointer; text-align:left; transition:all .15s; width:100%; }
+#d-modal .d-qc:hover:not([disabled]) { background:#E3F2FD; border-color:#1565C0; }
+#d-modal .d-qc.correct   { background:#4CAF50; border-color:#388E3C; color:#fff; }
+#d-modal .d-qc.incorrect { background:#EF5350; border-color:#C62828; color:#fff; }
+#d-modal .d-qc[disabled] { pointer-events:none; }
+#d-modal .d-qexp    { display:none; background:#F1F8E9; border-left:4px solid #4CAF50; border-radius:4px; padding:9px 12px; font-size:13px; margin-top:10px; line-height:1.6; }
+#d-modal .d-qexp.show { display:block; }
+#d-modal .d-qexp.err { background:#FFEBEE; border-color:#EF5350; }
+#d-modal .d-qnext   { display:none; background:#1565C0; color:#fff; border:none; border-radius:24px; padding:9px 22px; font-size:13px; font-weight:700; cursor:pointer; margin-top:12px; transition:background .15s; }
+#d-modal .d-qnext.show { display:inline-block; }
+#d-modal .d-qnext:hover { background:#0D47A1; }
+#d-modal .d-qres    { background:#fff; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,.08); padding:24px 14px; text-align:center; }
+#d-modal .d-qres .d-bscore { font-size:52px; font-weight:800; color:#1565C0; line-height:1; margin-bottom:4px; }
+#d-modal .d-qres .d-ssub   { font-size:13px; color:#78909C; margin-bottom:10px; }
+#d-modal .d-qres .d-smsg   { font-size:15px; font-weight:700; margin-bottom:18px; }
+
+/* ============================================
+   電離式ドリル モーダル（#dk- プレフィックス）
+   ============================================ */
+.dk-open-btn {
+  background: linear-gradient(135deg, #2E7D32, #1B5E20);
+  color: #fff; border: none; border-radius: 26px;
+  padding: 13px 32px; font-size: 15px; font-weight: 800;
+  cursor: pointer; box-shadow: 0 3px 14px rgba(46,125,50,.4);
+  transition: opacity .15s; font-family: inherit;
+}
+.dk-open-btn:hover { opacity: .85; }
+
+#dk-overlay {
+  position: fixed; inset: 0;
+  background: rgba(10,30,10,.72);
+  z-index: 500; display: flex;
+  align-items: flex-start; justify-content: center;
+  padding: 12px 8px 24px; overflow-y: auto;
+}
+#dk-modal {
+  position: relative; background: #F1F8E9;
+  border-radius: 18px; width: 100%; max-width: 560px;
+  padding: 20px 16px 24px;
+  box-shadow: 0 8px 40px rgba(0,0,0,.35);
+}
+#dk-close {
+  position: absolute; top: 12px; right: 12px;
+  background: rgba(0,0,0,.18); color: #fff; border: none;
+  border-radius: 50%; width: 32px; height: 32px;
+  font-size: 16px; cursor: pointer; line-height: 32px;
+  text-align: center; transition: background .15s;
+}
+#dk-close:hover { background: rgba(0,0,0,.38); }
+#dk-modal .dk-title { font-size: 17px; font-weight: 800; color: #2E7D32; margin-bottom: 14px; padding-right: 42px; }
+
+/* タブ */
+#dk-modal .dk-tabs  { display:flex; gap:8px; margin-bottom:12px; }
+#dk-modal .dk-tab   { flex:1; background:#fff; border:2px solid #A5D6A7; color:#2E7D32; border-radius:10px; padding:9px 6px; font-size:13px; font-weight:700; cursor:pointer; text-align:center; transition:all .15s; font-family:inherit; }
+#dk-modal .dk-tab.active { background:#2E7D32; color:#fff; border-color:#2E7D32; }
+
+/* 方向・スピード */
+#dk-modal .dk-dir    { display:flex; gap:6px; margin-bottom:9px; }
+#dk-modal .dk-dirbtn { flex:1; background:#fff; border:1.5px solid #BBDEFB; color:#1565C0; border-radius:20px; padding:6px 6px; font-size:12.5px; font-weight:700; cursor:pointer; text-align:center; transition:all .15s; font-family:inherit; }
+#dk-modal .dk-dirbtn.active { background:#1565C0; color:#fff; border-color:#1565C0; }
+#dk-modal .dk-spds   { display:flex; gap:5px; margin-bottom:9px; }
+#dk-modal .dk-spd    { flex:1; background:#fff; border:1.5px solid #CFD8DC; color:#546E7A; border-radius:20px; padding:5px 3px; font-size:12px; font-weight:700; cursor:pointer; text-align:center; transition:all .15s; font-family:inherit; }
+#dk-modal .dk-spd:hover { background:#ECEFF1; }
+#dk-modal .dk-spd.sm.active { background:#546E7A; color:#fff; border-color:#546E7A; }
+#dk-modal .dk-spd.sa.active { background:#FF8F00; color:#fff; border-color:#FF8F00; }
+
+/* カウントダウン・進捗 */
+#dk-modal .dk-cdwrap { height:5px; background:#E8F5E9; border-radius:3px; margin-bottom:8px; overflow:hidden; }
+#dk-modal .dk-cdfill { height:100%; width:100%; background:linear-gradient(90deg,#FF8F00,#FFB300); border-radius:3px; }
+#dk-modal .dk-prow   { display:flex; align-items:center; gap:8px; margin-bottom:10px; font-size:12px; }
+#dk-modal .dk-pbar   { flex:1; height:8px; background:#E8F5E9; border-radius:4px; overflow:hidden; }
+#dk-modal .dk-pfill  { height:100%; background:linear-gradient(90deg,#43A047,#81C784); border-radius:4px; transition:width .4s; }
+#dk-modal .dk-ptxt   { font-weight:700; color:#2E7D32; white-space:nowrap; min-width:46px; text-align:right; }
+
+/* 3Dカード */
+#dk-modal .dk-scene  { perspective:900px; margin:0 auto 7px; width:100%; height:200px; cursor:pointer; user-select:none; -webkit-user-select:none; }
+#dk-modal .dk-card3d { width:100%; height:100%; position:relative; transform-style:preserve-3d; transition:transform .45s; }
+#dk-modal .dk-card3d.flipped { transform:rotateY(180deg); }
+#dk-modal .dk-face   { position:absolute; inset:0; border-radius:16px; backface-visibility:hidden; -webkit-backface-visibility:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:14px 16px; box-shadow:0 3px 14px rgba(0,0,0,.12); }
+#dk-modal .dk-front  { background:#fff; border:2.5px solid #A5D6A7; }
+#dk-modal .dk-back   { background:#E8F5E9; border:2.5px solid #2E7D32; transform:rotateY(180deg); }
+#dk-modal .dk-clabel { font-size:11px; font-weight:700; color:#90A4AE; margin-bottom:5px; align-self:flex-start; }
+#dk-modal .dk-back .dk-clabel { color:#388E3C; }
+#dk-modal .dk-cname  { font-size:22px; font-weight:800; color:#1565C0; text-align:center; line-height:1.3; }
+#dk-modal .dk-ceqf   { font-size:14px; font-weight:700; color:#0D47A1; text-align:center; line-height:1.8; }
+#dk-modal .dk-ceqb   { font-size:17px; font-weight:700; color:#1B5E20; text-align:center; line-height:1.8; }
+#dk-modal .dk-cnote  { font-size:11px; color:#B71C1C; font-weight:700; margin-top:8px; background:#FFEBEE; border-radius:8px; padding:2px 10px; }
+#dk-modal .dk-cnote strong { color:#B71C1C; }
+
+/* ヒント・判定 */
+#dk-modal .dk-fhint  { text-align:center; font-size:12px; color:#90A4AE; margin-bottom:8px; min-height:16px; }
+#dk-modal .dk-jarea  { display:flex; gap:8px; justify-content:center; margin-bottom:10px; min-height:44px; }
+#dk-modal .dk-jbtn   { flex:1; max-width:175px; border:none; border-radius:24px; padding:11px 12px; font-size:14px; font-weight:800; cursor:pointer; transition:opacity .15s; font-family:inherit; }
+#dk-modal .dk-jbtn:hover { opacity:.85; }
+#dk-modal .dk-jok    { background:#4CAF50; color:#fff; }
+#dk-modal .dk-jng    { background:#EF5350; color:#fff; }
+#dk-modal .dk-rem    { text-align:center; font-size:12px; color:#78909C; margin-bottom:8px; }
+
+/* ng一覧 */
+#dk-modal .dk-nglist { background:#FFEBEE; border:1px solid #FFCDD2; border-radius:10px; padding:10px 14px; margin:8px auto 12px; text-align:left; }
+#dk-modal .dk-nglist h3 { font-size:13px; font-weight:700; color:#C62828; margin-bottom:6px; }
+#dk-modal .dk-ngitem { padding:5px 0; border-bottom:1px dashed #FFCDD2; }
+#dk-modal .dk-ngitem:last-child { border:none; }
+#dk-modal .dk-ngname { font-size:13px; font-weight:800; color:#333; }
+#dk-modal .dk-ngeq   { font-size:12px; font-weight:700; color:#1565C0; margin-top:2px; }
+
+/* クイズ */
+#dk-modal .dk-qhdr   { display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:700; color:#546E7A; margin-bottom:10px; }
+#dk-modal .dk-qscr   { color:#2E7D32; }
+#dk-modal .dk-qcard  { background:#fff; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,.08); padding:16px 14px; margin-bottom:10px; }
+#dk-modal .dk-qstem  { font-size:13px; font-weight:700; color:#546E7A; margin-bottom:4px; }
+#dk-modal .dk-qmain  { font-weight:800; color:#1565C0; text-align:center; padding:12px 0 14px; min-height:58px; display:flex; align-items:center; justify-content:center; line-height:1.5; }
+#dk-modal .dk-qlist  { display:flex; flex-direction:column; gap:7px; }
+#dk-modal .dk-qc     { background:#fff; border:1.5px solid #A5D6A7; color:#1B5E20; border-radius:9px; padding:10px 12px; font-size:12.5px; font-weight:700; cursor:pointer; text-align:left; transition:all .15s; width:100%; font-family:inherit; line-height:1.65; }
+#dk-modal .dk-qc:hover:not([disabled]) { background:#F1F8E9; border-color:#2E7D32; }
+#dk-modal .dk-qc.correct   { background:#4CAF50; border-color:#388E3C; color:#fff; }
+#dk-modal .dk-qc.incorrect { background:#EF5350; border-color:#C62828; color:#fff; }
+#dk-modal .dk-qc[disabled] { pointer-events:none; }
+#dk-modal .dk-qexp   { display:none; background:#F1F8E9; border-left:4px solid #4CAF50; border-radius:4px; padding:8px 11px; font-size:12.5px; margin-top:9px; line-height:1.7; }
+#dk-modal .dk-qexp.show { display:block; }
+#dk-modal .dk-qexp.err  { background:#FFEBEE; border-color:#EF5350; }
+#dk-modal .dk-qnext  { display:none; background:#2E7D32; color:#fff; border:none; border-radius:24px; padding:9px 22px; font-size:13px; font-weight:700; cursor:pointer; margin-top:12px; font-family:inherit; }
+#dk-modal .dk-qnext.show { display:inline-block; }
+#dk-modal .dk-qres   { background:#fff; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,.08); padding:22px 14px; text-align:center; }
+#dk-modal .dk-qres .dk-bsc  { font-size:50px; font-weight:800; color:#2E7D32; line-height:1; margin-bottom:4px; }
+#dk-modal .dk-qres .dk-sub  { font-size:13px; color:#78909C; margin-bottom:10px; }
+#dk-modal .dk-qres .dk-msg  { font-size:15px; font-weight:700; margin-bottom:16px; }
+</style>
+</head>
+<body data-page="ion1">
+
+<nav class="topnav">
+  <span class="brand">⚡ GAMBA 中学理科 化学変化とイオン</span>
+  <span class="sep">|</span>
+  <a href="index.html">📊 単元表</a>
+</nav>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="crumb">イオン講座 / 第1回</div>
+  <h1>電解質・原子の成り立ち・イオン <span class="stars">★☆☆</span></h1>
+  <p class="sub">「化学変化とイオン」の入り口です。電解質と非電解質のちがいを確認し、原子の構造からイオンの成り立ちを学び、電離式まで書けるようになりましょう。</p>
+</header>
+
+<main>
+
+<!-- ================================================== -->
+<!--  単元1:電解質と非電解質                             -->
+<!-- ================================================== -->
+<div class="unit">
+  <div class="unit-title"><span class="num">1</span>電解質と非電解質</div>
+
+  <div class="stage challenge" data-ch-id="u1" data-target="#u1-readbox">
+    <div class="stage-head">
+      <span class="stage-label read">📖 説明</span>
+      <div class="stage-actions">
+        <span class="challenge-timer" style="display:none;">0:00.0</span>
+        <button class="ch-btn start">🎯 チャレンジ開始</button>
+        <button class="ch-btn judge" style="display:none;">✓ 判定</button>
+        <button class="ch-btn example" style="display:none;">📖 手本</button>
+        <button class="ch-btn reset" style="display:none;">↻ リセット</button>
+        <button class="ch-btn cancel" style="display:none;">⏹ 中断</button>
+      </div>
+    </div>
+
+    <div class="read-box" id="u1-readbox">
+      <p>水に溶かしたとき電流を流す物質を「<span class="kw-blank" data-a="電解質">電解質</span>」といいます。食塩（塩化ナトリウム）・塩酸・水酸化ナトリウムなどが代表例です。</p>
+      <p>一方、水に溶かしても電流を流さない物質を「<span class="kw-blank" data-a="非電解質">非電解質</span>」といいます。</p>
+      <p>非電解質の代表例は「<span class="kw-blank" data-a="砂糖">砂糖</span>」と「<span class="kw-blank" data-a="エタノール">エタノール</span>」の2つです。必ず覚えましょう。</p>
+      <p>なぜ電解質の水溶液は電流が流れるのでしょうか？ 電解質が水溶液に溶けると「<span class="kw-blank" data-a="イオン">イオン</span>」が生じ、そのイオンが電子を受け渡しするために電流が流れます。</p>
+
+      <div style="text-align:center;margin:14px 0 10px;">
+        <img src="ion0.png" alt="水溶液に電流が流れるかどうかを調べる実験装置（電源装置・電流計・豆電球・ステンレスの電極）" style="max-width:100%;border-radius:10px;border:1px solid #BBDEFB;padding:4px;background:#fff;">
+        <div class="caption">▲ 水溶液の電気伝導性を調べる実験装置</div>
+      </div>
+
+      <div class="info-box" style="margin-top:10px;">
+        🔬 <strong>実験で確かめよう！</strong><br>
+        塩化ナトリウム水溶液 → <strong>電球が光る</strong>（電流が流れた = 電解質）<br>
+        砂糖水・エタノール水溶液 → <strong>電球が光らない</strong>（電流が流れない = 非電解質）
+      </div>
+    </div>
+
+    <div class="point-box">
+      <span class="label">★ 覚えよう！</span>
+      <ul>
+        <li>電解質 …… 水に溶けて電流を流す物質（例：NaCl・HCl・NaOH）</li>
+        <li>非電解質 …… 水に溶けても電流を流さない物質</li>
+        <li>非電解質の例 → <strong>砂糖・エタノール</strong>（この2つは必須！）</li>
+        <li>電流が流れる理由 → 電解質が溶けてイオンが生じ、電子を受け渡しするから</li>
+      </ul>
+    </div>
+
+    <div class="word-bank-inline">
+      <div class="wb-title">📚 語群 ― タップして単語を選び、空欄をタップ！</div>
+      <div class="wb-words"></div>
+    </div>
+  </div>
+
+  <div class="minitest-block">
+    <div class="mt-block-title">✏️ ミニテスト（全3問）</div>
+
+    <div class="minitest" data-correct="o">
+      <div class="mt-stem"><span class="mt-num">問1</span>水に溶かしたとき電流を流す物質を「電解質」という。</div>
+      <div class="mt-choices">
+        <button class="mt-c" data-v="o">○</button>
+        <button class="mt-c" data-v="x">×</button>
+      </div>
+      <div class="mt-exp">○ 正解です。食塩・塩酸・水酸化ナトリウムなどが電解質の代表です。</div>
+    </div>
+
+    <div class="minitest" data-correct="x">
+      <div class="mt-stem"><span class="mt-num">問2</span>砂糖を水に溶かすと電流が流れる。</div>
+      <div class="mt-choices">
+        <button class="mt-c" data-v="o">○</button>
+        <button class="mt-c" data-v="x">×</button>
+      </div>
+      <div class="mt-exp">× 砂糖は<span class="kw">非電解質</span>なので、水に溶かしても電流は流れません。エタノールも同様に非電解質です。</div>
+    </div>
+
+    <div class="q4" data-correct="c">
+      <div class="q4-stem"><span class="q4-num">問3</span>電解質の水溶液に電流が流れる理由として正しいものはどれか。</div>
+      <div class="q4-choices">
+        <button class="q4-c" data-v="a">ア：水自体が電気を通すから</button>
+        <button class="q4-c" data-v="b">イ：溶質が水と化学変化するから</button>
+        <button class="q4-c" data-v="c">ウ：溶けた電解質がイオンに分かれ、電子を受け渡しするから</button>
+        <button class="q4-c" data-v="d">エ：水溶液が熱を持つから</button>
+      </div>
+      <div class="q4-exp">正解は<strong>ウ</strong>。電解質が水中でイオンに分かれ（電離）、そのイオンが電子を受け渡しすることで電流が流れます。</div>
+    </div>
+
+    <div class="mt-block-result"></div>
+    <div style="text-align:center;"><button class="mt-block-reset">↻ もう一度</button></div>
+  </div>
+
+  <div class="ranking">
+    <h3>🏆 チャレンジ ベストタイム</h3>
+    <ul id="ranking-u1" class="ranking-list"><li style="color:#aaa;font-size:12px;">まだ記録がありません</li></ul>
+    <button class="btn outline" onclick="clearRanking('u1')">記録をリセット</button>
+  </div>
+</div>
+
+
+<!-- ================================================== -->
+<!--  単元2:原子の成り立ち                               -->
+<!-- ================================================== -->
+<div class="unit">
+  <div class="unit-title"><span class="num">2</span>原子の成り立ち</div>
+
+  <div class="stage challenge" data-ch-id="u2" data-target="#u2-readbox">
+    <div class="stage-head">
+      <span class="stage-label read">📖 説明</span>
+      <div class="stage-actions">
+        <span class="challenge-timer" style="display:none;">0:00.0</span>
+        <button class="ch-btn start">🎯 チャレンジ開始</button>
+        <button class="ch-btn judge" style="display:none;">✓ 判定</button>
+        <button class="ch-btn example" style="display:none;">📖 手本</button>
+        <button class="ch-btn reset" style="display:none;">↻ リセット</button>
+        <button class="ch-btn cancel" style="display:none;">⏹ 中断</button>
+      </div>
+    </div>
+
+    <div class="read-box" id="u2-readbox">
+      <p>すべての物質は「<span class="kw-blank" data-a="原子">原子</span>」から成り立っています。</p>
+      <p>原子の真ん中には「<span class="kw-blank" data-a="原子核">原子核</span>」があり、その周りを－の電荷を帯びた「<span class="kw-blank" data-a="電子">電子</span>」が高速で回っています。</p>
+      <p>原子核は、＋の電気を帯びた「<span class="kw-blank" data-a="陽子">陽子</span>」と、電気的に中性な「<span class="kw-blank" data-a="中性子">中性子</span>」から成り立っています。</p>
+
+      <div class="fig-with-table">
+        <div class="fig-main">
+          <img src="ion1.png" alt="原子の構造モデル図（ヘリウム原子：陽子2個・中性子2個・電子2個）">
+          <div class="caption">▲ ヘリウム(He)原子のモデル図</div>
+        </div>
+        <div class="fig-side">
+          <div class="fig-side-title">📋 原子を構成する粒子</div>
+          <dl>
+            <dt>陽子</dt>
+            <dd><span class="term">原子核の中</span>にある。<strong>＋の電荷</strong>をもつ。</dd>
+            <dt>中性子</dt>
+            <dd><span class="term">原子核の中</span>にある。陽子と同じ質量だが<strong>電気的に中性</strong>。</dd>
+            <dt>電子</dt>
+            <dd><span class="term">原子核のまわり</span>を回る。<strong>－の電荷</strong>をもつ。</dd>
+          </dl>
+        </div>
+      </div>
+
+      <p>【重要】すべての原子において、「<span class="kw-blank" data-a="陽子">陽子</span>」の数と「<span class="kw-blank" data-a="電子">電子</span>」の数は<strong>等しく</strong>なっています。そのため原子全体では＋と－が打ち消し合い、電気的に「<span class="kw-blank" data-a="中性">中性</span>」です。</p>
+    </div>
+
+    <div class="point-box">
+      <span class="label">★ 覚えよう！</span>
+      <ul>
+        <li>原子核 ＝ <strong>陽子（＋）</strong> ＋ <strong>中性子（中性）</strong></li>
+        <li>電子（－）…… 原子核のまわりを回る</li>
+        <li>陽子の数 ＝ 電子の数 → 原子全体は<strong>電気的に中性</strong></li>
+        <li>陽子1個と電子1個のもつ電荷の量は等しい</li>
+      </ul>
+    </div>
+
+    <div class="word-bank-inline">
+      <div class="wb-title">📚 語群 ― タップして単語を選び、空欄をタップ！</div>
+      <div class="wb-words"></div>
+    </div>
+  </div>
+
+  <div class="minitest-block">
+    <div class="mt-block-title">✏️ 確認問題（全4問）</div>
+
+    <div class="minitest" data-correct="o">
+      <div class="mt-stem"><span class="mt-num">問1</span>原子核は、陽子と中性子から成り立っている。</div>
+      <div class="mt-choices">
+        <button class="mt-c" data-v="o">○</button>
+        <button class="mt-c" data-v="x">×</button>
+      </div>
+      <div class="mt-exp">○ 正解です。原子核の中には<span class="kw">陽子（＋）</span>と<span class="kw">中性子（中性）</span>があります。</div>
+    </div>
+
+    <div class="minitest" data-correct="x">
+      <div class="mt-stem"><span class="mt-num">問2</span>原子の中の電子の数は、陽子の数より必ず多い。</div>
+      <div class="mt-choices">
+        <button class="mt-c" data-v="o">○</button>
+        <button class="mt-c" data-v="x">×</button>
+      </div>
+      <div class="mt-exp">× 陽子の数と電子の数は<span class="kw">等しい</span>です。だから原子全体は電気的に中性なのです。</div>
+    </div>
+
+    <div class="q4" data-correct="b">
+      <div class="q4-stem"><span class="q4-num">問3</span>原子核のまわりを回っている、－の電荷をもつ粒子は何か。</div>
+      <div class="q4-choices">
+        <button class="q4-c" data-v="a">ア：陽子</button>
+        <button class="q4-c" data-v="b">イ：電子</button>
+        <button class="q4-c" data-v="c">ウ：中性子</button>
+        <button class="q4-c" data-v="d">エ：原子核</button>
+      </div>
+      <div class="q4-exp">正解は<strong>イ：電子</strong>。電子は－の電荷をもち、原子核のまわりを高速で回っています。</div>
+    </div>
+
+    <div class="q4" data-correct="d">
+      <div class="q4-stem"><span class="q4-num">問4</span>原子が電気的に中性である理由として正しいものはどれか。</div>
+      <div class="q4-choices">
+        <button class="q4-c" data-v="a">ア：原子核に電荷がないから</button>
+        <button class="q4-c" data-v="b">イ：電子が原子核より重いから</button>
+        <button class="q4-c" data-v="c">ウ：中性子が多いから</button>
+        <button class="q4-c" data-v="d">エ：陽子の数と電子の数が等しく、＋と－が打ち消し合うから</button>
+      </div>
+      <div class="q4-exp">正解は<strong>エ</strong>。陽子（＋）の数 ＝ 電子（－）の数なので、電荷が打ち消し合って全体では中性になります。</div>
+    </div>
+
+    <div class="mt-block-result"></div>
+    <div style="text-align:center;"><button class="mt-block-reset">↻ もう一度</button></div>
+  </div>
+
+  <div class="ranking">
+    <h3>🏆 チャレンジ ベストタイム</h3>
+    <ul id="ranking-u2" class="ranking-list"><li style="color:#aaa;font-size:12px;">まだ記録がありません</li></ul>
+    <button class="btn outline" onclick="clearRanking('u2')">記録をリセット</button>
+  </div>
+</div>
+
+
+<!-- ================================================== -->
+<!--  単元3:イオン                                        -->
+<!-- ================================================== -->
+<div class="unit">
+  <div class="unit-title"><span class="num">3</span>イオン ― 陽イオンと陰イオン</div>
+
+  <!-- 3-1 イオンとは -->
+  <div class="stage challenge" data-ch-id="u3-1" data-target="#u3-1-readbox">
+    <div class="stage-head">
+      <span class="stage-label read">📖 イオンとは</span>
+      <div class="stage-actions">
+        <span class="challenge-timer" style="display:none;">0:00.0</span>
+        <button class="ch-btn start">🎯 チャレンジ開始</button>
+        <button class="ch-btn judge" style="display:none;">✓ 判定</button>
+        <button class="ch-btn example" style="display:none;">📖 手本</button>
+        <button class="ch-btn reset" style="display:none;">↻ リセット</button>
+        <button class="ch-btn cancel" style="display:none;">⏹ 中断</button>
+      </div>
+    </div>
+
+    <div class="read-box" id="u3-1-readbox">
+      <p>原子が電子を失ったり得たりして電気を帯びたものを「<span class="kw-blank" data-a="イオン">イオン</span>」といいます。</p>
+      <p>原子が電子を<strong>失う</strong>と、陽子の数が電子の数より多くなるため「<span class="kw-blank" data-a="陽イオン">陽イオン</span>」（＋の電荷）になります。</p>
+      <p>原子が電子を<strong>得る</strong>と、電子の数が陽子の数より多くなるため「<span class="kw-blank" data-a="陰イオン">陰イオン</span>」（－の電荷）になります。</p>
+
+      <div class="fig-main" style="text-align:center;margin:14px 0;">
+        <img src="ion2.png" alt="原子がイオンになるしくみの図" style="max-width:340px;display:inline-block;">
+        <div class="caption">▲ 原子がイオンになるしくみ</div>
+      </div>
+    </div>
+
+    <div class="point-box">
+      <span class="label">★ 覚えよう！</span>
+      <ul>
+        <li>イオン …… 原子が電子を<strong>失ったり・得たり</strong>して電気を帯びたもの</li>
+        <li>電子を<strong>失う</strong> → 陽子 ＞ 電子 → <strong>陽イオン（＋）</strong></li>
+        <li>電子を<strong>得る</strong> → 電子 ＞ 陽子 → <strong>陰イオン（－）</strong></li>
+      </ul>
+    </div>
+
+    <div class="word-bank-inline">
+      <div class="wb-title">📚 語群 ― タップして単語を選び、空欄をタップ！</div>
+      <div class="wb-words"></div>
+    </div>
+  </div>
+
+  <!-- 3-2 陽イオン -->
+  <div class="stage challenge" data-ch-id="u3-2" data-target="#u3-2-readbox">
+    <div class="stage-head">
+      <span class="stage-label read" style="background:#C62828;">📖 陽イオン（Na の例）</span>
+      <div class="stage-actions">
+        <span class="challenge-timer" style="display:none;">0:00.0</span>
+        <button class="ch-btn start">🎯 チャレンジ開始</button>
+        <button class="ch-btn judge" style="display:none;">✓ 判定</button>
+        <button class="ch-btn example" style="display:none;">📖 手本</button>
+        <button class="ch-btn reset" style="display:none;">↻ リセット</button>
+        <button class="ch-btn cancel" style="display:none;">⏹ 中断</button>
+      </div>
+    </div>
+
+    <div class="read-box" id="u3-2-readbox">
+      <p>ナトリウム(Na)原子は陽子が11個・電子が11個あります。</p>
+      <p>電子を<strong>1個失う</strong>と → 陽子11個、電子<span class="kw-blank" data-a="10">10</span>個 → <strong>＋1</strong>の電荷を帯びた「<span class="kw-blank" data-a="陽イオン">陽イオン</span>」になります。これをナトリウムイオン（Na<sup>+</sup>）といいます。</p>
+
+      <div style="display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;margin:10px 0 4px;">
+        <img src="ion3.png" alt="ナトリウム原子からナトリウムイオンができる図" style="max-width:300px;border-radius:8px;border:1px solid #FFCDD2;padding:4px;background:#fff;flex-shrink:0;">
+        <div style="background:#FFEBEE;border-left:4px solid #C62828;border-radius:0 8px 8px 0;padding:12px 14px;min-width:160px;flex:1;">
+          <div style="font-weight:800;color:#B71C1C;margin-bottom:6px;">陽イオンのポイント</div>
+          <p style="margin:0;font-size:13.5px;line-height:1.8;">原子が電子を<strong>失う</strong><br>→ 陽子 ＞ 電子<br>→ <strong>＋の電荷</strong>を帯びる<br>→ <strong>陽イオン</strong>（Na<sup>+</sup> など）</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="point-box">
+      <span class="label">★ 陽イオンまとめ</span>
+      <ul>
+        <li>電子を<strong>失う</strong> → ＋の電荷 → <strong>陽イオン</strong></li>
+        <li>Na → Na<sup>+</sup>（電子1個失う）</li>
+        <li>Cu → Cu<sup>2+</sup>（電子2個失う）</li>
+        <li>H → H<sup>+</sup>（電子1個失う）</li>
+      </ul>
+    </div>
+
+    <div class="word-bank-inline">
+      <div class="wb-title">📚 語群 ― タップして単語を選び、空欄をタップ！</div>
+      <div class="wb-words"></div>
+    </div>
+  </div>
+
+  <!-- 3-3 陰イオン -->
+  <div class="stage challenge" data-ch-id="u3-3" data-target="#u3-3-readbox">
+    <div class="stage-head">
+      <span class="stage-label read" style="background:#0D47A1;">📖 陰イオン（Cl の例）</span>
+      <div class="stage-actions">
+        <span class="challenge-timer" style="display:none;">0:00.0</span>
+        <button class="ch-btn start">🎯 チャレンジ開始</button>
+        <button class="ch-btn judge" style="display:none;">✓ 判定</button>
+        <button class="ch-btn example" style="display:none;">📖 手本</button>
+        <button class="ch-btn reset" style="display:none;">↻ リセット</button>
+        <button class="ch-btn cancel" style="display:none;">⏹ 中断</button>
+      </div>
+    </div>
+
+    <div class="read-box" id="u3-3-readbox">
+      <p>塩素(Cl)原子は陽子が17個・電子が17個あります。</p>
+      <p>電子を<strong>1個得る</strong>と → 陽子17個、電子<span class="kw-blank" data-a="18">18</span>個 → <strong>－1</strong>の電荷を帯びた「<span class="kw-blank" data-a="陰イオン">陰イオン</span>」になります。これを塩化物イオン（Cl<sup>−</sup>）といいます。</p>
+
+      <div style="display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;margin:10px 0 4px;">
+        <img src="ion4.png" alt="塩素原子から塩化物イオンができる図" style="max-width:300px;border-radius:8px;border:1px solid #BBDEFB;padding:4px;background:#fff;flex-shrink:0;">
+        <div style="background:#E3F2FD;border-left:4px solid #1565C0;border-radius:0 8px 8px 0;padding:12px 14px;min-width:160px;flex:1;">
+          <div style="font-weight:800;color:#0D47A1;margin-bottom:6px;">陰イオンのポイント</div>
+          <p style="margin:0;font-size:13.5px;line-height:1.8;">原子が電子を<strong>得る</strong><br>→ 電子 ＞ 陽子<br>→ <strong>－の電荷</strong>を帯びる<br>→ <strong>陰イオン</strong>（Cl<sup>−</sup> など）</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="point-box">
+      <span class="label">★ 陰イオンまとめ</span>
+      <ul>
+        <li>電子を<strong>得る</strong> → －の電荷 → <strong>陰イオン</strong></li>
+        <li>Cl → Cl<sup>−</sup>（電子1個もらう）</li>
+        <li>OH → OH<sup>−</sup>（電子1個もらう）</li>
+        <li>SO<sub>4</sub> → SO<sub>4</sub><sup>2−</sup>（電子2個もらう）</li>
+      </ul>
+    </div>
+
+    <div class="word-bank-inline">
+      <div class="wb-title">📚 語群 ― タップして単語を選び、空欄をタップ！</div>
+      <div class="wb-words"></div>
+    </div>
+  </div>
+
+  <!-- イオン式一覧 -->
+  <div style="padding:0 14px 14px;">
+    <div style="font-weight:700;font-size:14px;color:#1565C0;margin:10px 0 8px;">📋 覚えるべきイオン式一覧</div>
+    <div class="ion-grid">
+      <div class="ion-card plus">
+        <div class="ion-card-head">陽イオン（＋）</div>
+        <table>
+          <tr><td>水素イオン</td><td class="ion-formula">H<sup>+</sup></td></tr>
+          <tr><td>ナトリウムイオン</td><td class="ion-formula">Na<sup>+</sup></td></tr>
+          <tr><td>銅イオン</td><td class="ion-formula">Cu<sup>2+</sup></td></tr>
+          <tr><td>亜鉛イオン</td><td class="ion-formula">Zn<sup>2+</sup></td></tr>
+          <tr><td>バリウムイオン</td><td class="ion-formula">Ba<sup>2+</sup></td></tr>
+        </table>
+      </div>
+      <div class="ion-card minus">
+        <div class="ion-card-head">陰イオン（－）</div>
+        <table>
+          <tr><td>塩化物イオン</td><td class="ion-formula">Cl<sup>−</sup></td></tr>
+          <tr><td>水酸化物イオン</td><td class="ion-formula">OH<sup>−</sup></td></tr>
+          <tr><td>硫酸イオン</td><td class="ion-formula">SO<sub>4</sub><sup>2−</sup></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 暗記ドリル 起動ボタン -->
+  <div style="text-align:center;padding:12px 14px 18px;">
+    <button class="drill-open-btn" onclick="Drill.open()">⚡ 暗記ドリルで練習する</button>
+    <div style="font-size:12px;color:#90A4AE;margin-top:6px;">フラッシュカード ＋ 4択クイズ</div>
+  </div>
+
+  <!-- ミニテスト -->
+  <div class="minitest-block">
+    <div class="mt-block-title">✏️ 確認問題（全4問）</div>
+
+    <div class="minitest" data-correct="x">
+      <div class="mt-stem"><span class="mt-num">問1</span>原子が電子を失うと陰イオンになる。</div>
+      <div class="mt-choices">
+        <button class="mt-c" data-v="o">○</button>
+        <button class="mt-c" data-v="x">×</button>
+      </div>
+      <div class="mt-exp">× 電子を<span class="kw">失う</span>と＋の電荷を帯びて<span class="kw">陽イオン</span>になります。陰イオンは電子を<span class="kw">得た</span>ときです。</div>
+    </div>
+
+    <div class="q4" data-correct="a">
+      <div class="q4-stem"><span class="q4-num">問2</span>ナトリウム原子(Na)が電子を1個失ったときのイオン式はどれか。</div>
+      <div class="q4-choices">
+        <button class="q4-c" data-v="a">ア：Na<sup>+</sup></button>
+        <button class="q4-c" data-v="b">イ：Na<sup>−</sup></button>
+        <button class="q4-c" data-v="c">ウ：Na<sup>2+</sup></button>
+        <button class="q4-c" data-v="d">エ：Na<sup>2−</sup></button>
+      </div>
+      <div class="q4-exp">正解は<strong>ア：Na<sup>+</sup></strong>。電子を1個失うので＋1の電荷を帯びた陽イオンになります。</div>
+    </div>
+
+    <div class="q4" data-correct="c">
+      <div class="q4-stem"><span class="q4-num">問3</span>塩素原子(Cl)が電子を1個得たときのイオン式はどれか。</div>
+      <div class="q4-choices">
+        <button class="q4-c" data-v="a">ア：Cl<sup>+</sup></button>
+        <button class="q4-c" data-v="b">イ：Cl<sup>2−</sup></button>
+        <button class="q4-c" data-v="c">ウ：Cl<sup>−</sup></button>
+        <button class="q4-c" data-v="d">エ：Cl<sup>2+</sup></button>
+      </div>
+      <div class="q4-exp">正解は<strong>ウ：Cl<sup>−</sup></strong>。電子を1個得るので－1の電荷を帯びた陰イオン（塩化物イオン）になります。</div>
+    </div>
+
+    <div class="q4" data-correct="b">
+      <div class="q4-stem"><span class="q4-num">問4</span>次のうち陽イオンでないものはどれか。</div>
+      <div class="q4-choices">
+        <button class="q4-c" data-v="a">ア：H<sup>+</sup></button>
+        <button class="q4-c" data-v="b">イ：OH<sup>−</sup></button>
+        <button class="q4-c" data-v="c">ウ：Cu<sup>2+</sup></button>
+        <button class="q4-c" data-v="d">エ：Ba<sup>2+</sup></button>
+      </div>
+      <div class="q4-exp">正解は<strong>イ：OH<sup>−</sup></strong>（水酸化物イオン）。これは－の電荷をもつ陰イオンです。ア・ウ・エはすべて陽イオンです。</div>
+    </div>
+
+    <div class="mt-block-result"></div>
+    <div style="text-align:center;"><button class="mt-block-reset">↻ もう一度</button></div>
+  </div>
+
+  <div class="ranking">
+    <h3>🏆 チャレンジ ベストタイム</h3>
+    <ul id="ranking-u3" class="ranking-list"><li style="color:#aaa;font-size:12px;">まだ記録がありません</li></ul>
+    <button class="btn outline" onclick="clearRanking('u3')">記録をリセット</button>
+  </div>
+</div>
+
+
+<!-- ================================================== -->
+<!--  単元4:電離と電離式                                  -->
+<!-- ================================================== -->
+<div class="unit">
+  <div class="unit-title"><span class="num">4</span>電離と電離式</div>
+
+  <div class="stage challenge" data-ch-id="u4" data-target="#u4-readbox">
+    <div class="stage-head">
+      <span class="stage-label read">📖 説明</span>
+      <div class="stage-actions">
+        <span class="challenge-timer" style="display:none;">0:00.0</span>
+        <button class="ch-btn start">🎯 チャレンジ開始</button>
+        <button class="ch-btn judge" style="display:none;">✓ 判定</button>
+        <button class="ch-btn example" style="display:none;">📖 手本</button>
+        <button class="ch-btn reset" style="display:none;">↻ リセット</button>
+        <button class="ch-btn cancel" style="display:none;">⏹ 中断</button>
+      </div>
+    </div>
+
+    <div class="read-box" id="u4-readbox">
+      <p>電解質が水中で陽イオンと陰イオンに分かれることを「<span class="kw-blank" data-a="電離">電離</span>」といいます。電離後、全体の電荷の和は必ず <strong>0</strong> になります。</p>
+      <p>電離のようすをイオン記号で表した式を「<span class="kw-blank" data-a="電離式">電離式</span>」といいます。矢印（→）の<strong>左</strong>に元の物質、<strong>右</strong>に生じたイオンを書きます。</p>
+
+      <div style="overflow-x:auto;">
+        <table class="dri-table">
+          <thead>
+            <tr><th class="dri-name">電解質</th><th>電離式</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="dri-name">塩化水素（塩酸）</td><td>HCl → H<sup>+</sup> ＋ Cl<sup>−</sup></td></tr>
+            <tr><td class="dri-name">塩化ナトリウム</td><td>NaCl → Na<sup>+</sup> ＋ Cl<sup>−</sup></td></tr>
+            <tr><td class="dri-name">水酸化ナトリウム</td><td>NaOH → Na<sup>+</sup> ＋ OH<sup>−</sup></td></tr>
+            <tr><td class="dri-name">塩化銅</td><td>CuCl<sub>2</sub> → Cu<sup>2+</sup> ＋ 2Cl<sup>−</sup></td></tr>
+            <tr><td class="dri-name">硫酸銅</td><td>CuSO<sub>4</sub> → Cu<sup>2+</sup> ＋ SO<sub>4</sub><sup>2−</sup></td></tr>
+            <tr><td class="dri-name">水酸化バリウム</td><td>Ba(OH)<sub>2</sub> → Ba<sup>2+</sup> ＋ 2OH<sup>−</sup></td></tr>
+            <tr><td class="dri-name">硫酸</td><td>H<sub>2</sub>SO<sub>4</sub> → 2H<sup>+</sup> ＋ SO<sub>4</sub><sup>2−</sup></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-box" style="margin-top:12px;">
+        💡 <strong>電荷バランスのチェック方法</strong><br>
+        例）CuCl<sub>2</sub> → Cu<sup>2+</sup> ＋ 2Cl<sup>−</sup><br>
+        右辺の電荷合計：(＋2) ＋ 2×(－1) ＝ 0 ✓
+      </div>
+    </div>
+
+    <div class="point-box">
+      <span class="label">★ 電離式の書き方ポイント！</span>
+      <ul>
+        <li>電離 …… 電解質が水中で<strong>陽イオンと陰イオン</strong>に分かれること</li>
+        <li>矢印の右辺：生じたイオンの電荷の合計 ＝ <strong>0</strong></li>
+        <li>CuCl<sub>2</sub> → Cu<sup>2+</sup> ＋ <strong>2</strong>Cl<sup>−</sup>（Clが2個！）</li>
+        <li>Ba(OH)<sub>2</sub> → Ba<sup>2+</sup> ＋ <strong>2</strong>OH<sup>−</sup>（OHが2個！）</li>
+        <li>H<sub>2</sub>SO<sub>4</sub> → <strong>2</strong>H<sup>+</sup> ＋ SO<sub>4</sub><sup>2−</sup>（Hが2個！）</li>
+      </ul>
+    </div>
+
+    <div class="word-bank-inline">
+      <div class="wb-title">📚 語群 ― タップして単語を選び、空欄をタップ！</div>
+      <div class="wb-words"></div>
+    </div>
+  </div>
+
+  <!-- ミニテスト -->
+  <div class="minitest-block">
+    <div class="mt-block-title">✏️ 電離式 確認問題（全5問）</div>
+
+    <div class="minitest" data-correct="o">
+      <div class="mt-stem"><span class="mt-num">問1</span>塩化ナトリウムの電離式は「NaCl → Na<sup>+</sup> ＋ Cl<sup>−</sup>」である。</div>
+      <div class="mt-choices">
+        <button class="mt-c" data-v="o">○</button>
+        <button class="mt-c" data-v="x">×</button>
+      </div>
+      <div class="mt-exp">○ 正解です。NaCl は Na<sup>+</sup> と Cl<sup>−</sup> に電離します。(＋1)＋(－1)＝0 ✓</div>
+    </div>
+
+    <div class="q4" data-correct="c">
+      <div class="q4-stem"><span class="q4-num">問2</span>塩化銅 CuCl<sub>2</sub> の電離式として正しいものはどれか。</div>
+      <div class="q4-choices">
+        <button class="q4-c" data-v="a">ア：CuCl<sub>2</sub> → Cu<sup>+</sup> ＋ 2Cl<sup>−</sup></button>
+        <button class="q4-c" data-v="b">イ：CuCl<sub>2</sub> → Cu<sup>2+</sup> ＋ Cl<sup>−</sup></button>
+        <button class="q4-c" data-v="c">ウ：CuCl<sub>2</sub> → Cu<sup>2+</sup> ＋ 2Cl<sup>−</sup></button>
+        <button class="q4-c" data-v="d">エ：CuCl<sub>2</sub> → Cu<sup>2−</sup> ＋ 2Cl<sup>+</sup></button>
+      </div>
+      <div class="q4-exp">正解は<strong>ウ</strong>。銅イオンは Cu<sup>2+</sup>、電荷バランスから Cl<sup>−</sup> が2個必要。(＋2)＋2×(－1)＝0 ✓</div>
+    </div>
+
+    <div class="q4" data-correct="b">
+      <div class="q4-stem"><span class="q4-num">問3</span>水酸化バリウム Ba(OH)<sub>2</sub> の電離式として正しいものはどれか。</div>
+      <div class="q4-choices">
+        <button class="q4-c" data-v="a">ア：Ba(OH)<sub>2</sub> → Ba<sup>+</sup> ＋ OH<sup>−</sup></button>
+        <button class="q4-c" data-v="b">イ：Ba(OH)<sub>2</sub> → Ba<sup>2+</sup> ＋ 2OH<sup>−</sup></button>
+        <button class="q4-c" data-v="c">ウ：Ba(OH)<sub>2</sub> → 2Ba<sup>+</sup> ＋ OH<sup>2−</sup></button>
+        <button class="q4-c" data-v="d">エ：Ba(OH)<sub>2</sub> → Ba<sup>2+</sup> ＋ OH<sup>−</sup></button>
+      </div>
+      <div class="q4-exp">正解は<strong>イ</strong>。Ba<sup>2+</sup> と OH<sup>−</sup> が2個に電離。(＋2)＋2×(－1)＝0 ✓</div>
+    </div>
+
+    <div class="q4" data-correct="a">
+      <div class="q4-stem"><span class="q4-num">問4</span>硫酸 H<sub>2</sub>SO<sub>4</sub> の電離式として正しいものはどれか。</div>
+      <div class="q4-choices">
+        <button class="q4-c" data-v="a">ア：H<sub>2</sub>SO<sub>4</sub> → 2H<sup>+</sup> ＋ SO<sub>4</sub><sup>2−</sup></button>
+        <button class="q4-c" data-v="b">イ：H<sub>2</sub>SO<sub>4</sub> → H<sup>2+</sup> ＋ SO<sub>4</sub><sup>2−</sup></button>
+        <button class="q4-c" data-v="c">ウ：H<sub>2</sub>SO<sub>4</sub> → 2H<sup>+</sup> ＋ SO<sub>4</sub><sup>−</sup></button>
+        <button class="q4-c" data-v="d">エ：H<sub>2</sub>SO<sub>4</sub> → H<sup>+</sup> ＋ SO<sub>4</sub><sup>2−</sup></button>
+      </div>
+      <div class="q4-exp">正解は<strong>ア</strong>。H が2個あるので水素イオンが<strong>2個</strong>できます。2×(＋1)＋(－2)＝0 ✓</div>
+    </div>
+
+    <div class="q4" data-correct="d">
+      <div class="q4-stem"><span class="q4-num">問5</span>電離の説明として正しいものはどれか。</div>
+      <div class="q4-choices">
+        <button class="q4-c" data-v="a">ア：電解質が加熱されて分解すること</button>
+        <button class="q4-c" data-v="b">イ：電気によって化合物が分解されること</button>
+        <button class="q4-c" data-v="c">ウ：非電解質が水に溶けてイオンになること</button>
+        <button class="q4-c" data-v="d">エ：電解質が水中で陽イオンと陰イオンに分かれること</button>
+      </div>
+      <div class="q4-exp">正解は<strong>エ</strong>。電離とは「電解質が水中で陽イオンと陰イオンに分かれること」です。熱や電気ではなく、水に溶けることで自然に起こります。</div>
+    </div>
+
+    <div class="mt-block-result"></div>
+    <div style="text-align:center;"><button class="mt-block-reset">↻ もう一度</button></div>
+  </div>
+
+  <div class="ranking">
+    <h3>🏆 チャレンジ ベストタイム</h3>
+    <ul id="ranking-u4" class="ranking-list"><li style="color:#aaa;font-size:12px;">まだ記録がありません</li></ul>
+    <button class="btn outline" onclick="clearRanking('u4')">記録をリセット</button>
+  </div>
+
+  <!-- 電離式ドリル 起動ボタン -->
+  <div style="text-align:center;padding:12px 14px 20px;">
+    <button class="dk-open-btn" onclick="DKDrill.open()">🧪 電離式ドリルで練習する</button>
+    <div style="font-size:12px;color:#90A4AE;margin-top:6px;">フラッシュカード ＋ 4択クイズ（電荷・係数ひっかけ問題）</div>
+  </div>
+</div>
+
+
+<!-- ================================================== -->
+<!--  単元5:酸とアルカリ                                  -->
+<!-- ================================================== -->
+<div class="unit">
+  <div class="unit-title"><span class="num">5</span>酸とアルカリ</div>
+
+  <!-- ── チャレンジ 5-1: 酸とアルカリの性質 ── -->
+  <div class="stage challenge" data-ch-id="u5-1" data-target="#u5-1-readbox">
+    <div class="stage-head">
+      <span class="stage-label read">📖 説明</span>
+      <div class="stage-actions">
+        <span class="challenge-timer" style="display:none;">0:00.0</span>
+        <button class="ch-btn start">🎯 チャレンジ開始</button>
+        <button class="ch-btn judge" style="display:none;">✓ 判定</button>
+        <button class="ch-btn example" style="display:none;">📖 手本</button>
+        <button class="ch-btn reset" style="display:none;">↻ リセット</button>
+        <button class="ch-btn cancel" style="display:none;">⏹ 中断</button>
+      </div>
+    </div>
+
+    <div class="read-box" id="u5-1-readbox">
+
+      <h4 style="color:#E53935;margin:0 0 6px;">🔴 酸の性質</h4>
+      <p>水に溶けたときに電離して<span class="kw-blank" data-a="水素">水素</span>イオン（H<sup>+</sup>）を生じる物質を<strong>酸</strong>という。</p>
+      <ul>
+        <li>酸味をもつ。</li>
+        <li><span class="kw-blank" data-a="青">青</span>色リトマス試験紙を<span class="kw-blank" data-a="赤">赤</span>色に変える。</li>
+        <li>鉄やマグネシウムと反応すると気体の<span class="kw-blank" data-a="水素">水素</span>が発生する。</li>
+      </ul>
+      <div class="info-box" style="margin:8px 0;">
+        【例】塩酸の電離：HCl &nbsp;→&nbsp; H<sup>+</sup> ＋ Cl<sup>−</sup>
+      </div>
+
+      <h4 style="color:#1565C0;margin:12px 0 6px;">🔵 アルカリの性質</h4>
+      <p>水に溶けたときに電離して<span class="kw-blank" data-a="水酸化物">水酸化物</span>イオン（OH<sup>−</sup>）を生じる物質を<strong>アルカリ</strong>という。</p>
+      <ul>
+        <li>苦みをもつ。ぬるぬるする。</li>
+        <li><span class="kw-blank" data-a="赤">赤</span>色リトマス試験紙を<span class="kw-blank" data-a="青">青</span>色に変える。</li>
+      </ul>
+      <div class="info-box" style="margin:8px 0;">
+        【例】水酸化ナトリウムの電離：NaOH &nbsp;→&nbsp; Na<sup>+</sup> ＋ OH<sup>−</sup>
+      </div>
+
+      <div class="point-box" style="margin-top:12px;">
+        <span class="label">★ まとめ</span>
+        <ul>
+          <li><strong>酸</strong>：H<sup>+</sup> を生じる ／ 青→赤 ／ 水素発生（金属と反応）</li>
+          <li><strong>アルカリ</strong>：OH<sup>−</sup> を生じる ／ 赤→青</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="word-bank-inline">
+      <div class="wb-title">📚 語群 ― タップして単語を選び、空欄をタップ！</div>
+      <div class="wb-words"></div>
+    </div>
+  </div>
+
+  <!-- ── チャレンジ 5-2: 電気泳動実験 ── -->
+  <div class="stage challenge" data-ch-id="u5-2" data-target="#u5-2-readbox">
+    <div class="stage-head">
+      <span class="stage-label read">🔬 実験</span>
+      <div class="stage-actions">
+        <span class="challenge-timer" style="display:none;">0:00.0</span>
+        <button class="ch-btn start">🎯 チャレンジ開始</button>
+        <button class="ch-btn judge" style="display:none;">✓ 判定</button>
+        <button class="ch-btn example" style="display:none;">📖 手本</button>
+        <button class="ch-btn reset" style="display:none;">↻ リセット</button>
+        <button class="ch-btn cancel" style="display:none;">⏹ 中断</button>
+      </div>
+    </div>
+
+    <div class="read-box" id="u5-2-readbox">
+      <h4 style="margin:0 0 8px;">🧪 電気泳動実験（イオンの移動）</h4>
+      <p>食塩水をしみこませたろ紙に、青・赤のリトマス試験紙を置いて電圧をかける実験。</p>
+
+      <!-- 実験セットアップ図 -->
+      <div style="text-align:center;margin:10px 0;">
+        <img src="ion6.png" alt="電気泳動実験の装置図（a:青リトマス＋側、b:青リトマス－側、c:赤リトマス＋側、d:赤リトマス－側）" style="max-width:100%;border-radius:6px;">
+      </div>
+
+      <h4 style="margin:12px 0 6px;">結果と考察</h4>
+
+      <div style="background:#FFEBEE;border-left:4px solid #E53935;border-radius:6px;padding:10px 12px;margin:8px 0;">
+        <strong>① 塩酸（HCl）をたらした場合</strong><br>
+        HCl → H<sup>+</sup> ＋ Cl<sup>−</sup><br>
+        H<sup>+</sup>（陽イオン）は<span class="kw-blank" data-a="−">−</span>極の方向へ移動する。<br>
+        → <span class="kw-blank" data-a="b">b</span>（青リトマス・－側）が<strong>赤</strong>色に変わる ＝ <span class="kw-blank" data-a="酸">酸</span>性
+      </div>
+
+      <div style="background:#E3F2FD;border-left:4px solid #1565C0;border-radius:6px;padding:10px 12px;margin:8px 0;">
+        <strong>② 水酸化ナトリウム（NaOH）をたらした場合</strong><br>
+        NaOH → Na<sup>+</sup> ＋ OH<sup>−</sup><br>
+        OH<sup>−</sup>（陰イオン）は<span class="kw-blank" data-a="＋">＋</span>極の方向へ移動する。<br>
+        → <span class="kw-blank" data-a="c">c</span>（赤リトマス・＋側）が<strong>青</strong>色に変わる ＝ <span class="kw-blank" data-a="アルカリ">アルカリ</span>性
+      </div>
+
+      <div style="background:#F3E5F5;border-left:4px solid #7B1FA2;border-radius:6px;padding:10px 12px;margin:8px 0;">
+        <strong>③ 食塩水（NaCl）をたらした場合</strong><br>
+        NaCl → Na<sup>+</sup> ＋ Cl<sup>−</sup><br>
+        H<sup>+</sup> も OH<sup>−</sup> も生じないため、リトマスの色は<strong>変化しない</strong>。
+      </div>
+
+      <div class="point-box" style="margin-top:10px;">
+        <span class="label">★ ポイント</span>
+        <ul>
+          <li>陽イオン（＋）は <strong>－極</strong> へ引き寄せられる</li>
+          <li>陰イオン（－）は <strong>＋極</strong> へ引き寄せられる</li>
+          <li>酸性の原因 ＝ <strong>H<sup>+</sup></strong>、アルカリ性の原因 ＝ <strong>OH<sup>−</sup></strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="word-bank-inline">
+      <div class="wb-title">📚 語群 ― タップして単語を選び、空欄をタップ！</div>
+      <div class="wb-words"></div>
+    </div>
+  </div>
+
+  <!-- ── ミニテスト 単元5 ── -->
+  <div class="minitest-block">
+    <div class="mt-block-title">✏️ 酸とアルカリ 確認問題（全6問）</div>
+
+    <div class="minitest" data-correct="o">
+      <div class="mt-stem"><span class="mt-num">問1</span>酸は水に溶けて水素イオン（H<sup>+</sup>）を生じる物質である。</div>
+      <div class="mt-choices">
+        <button class="mt-c" data-v="o">○</button>
+        <button class="mt-c" data-v="x">×</button>
+      </div>
+      <div class="mt-exp">○ 正解です。H<sup>+</sup> を生じるのが<span class="kw">酸</span>の定義です。</div>
+    </div>
+
+    <div class="minitest" data-correct="x">
+      <div class="mt-stem"><span class="mt-num">問2</span>アルカリは青色リトマス試験紙を赤色に変える。</div>
+      <div class="mt-choices">
+        <button class="mt-c" data-v="o">○</button>
+        <button class="mt-c" data-v="x">×</button>
+      </div>
+      <div class="mt-exp">× アルカリは<span class="kw">赤→青</span>です。青→赤に変えるのは<span class="kw">酸</span>です。</div>
+    </div>
+
+    <div class="minitest" data-correct="o">
+      <div class="mt-stem"><span class="mt-num">問3</span>塩酸に鉄を入れると水素が発生する。</div>
+      <div class="mt-choices">
+        <button class="mt-c" data-v="o">○</button>
+        <button class="mt-c" data-v="x">×</button>
+      </div>
+      <div class="mt-exp">○ 正解です。酸（H<sup>+</sup>）は金属と反応して<span class="kw">水素</span>を発生させます。</div>
+    </div>
+
+    <div class="q4" data-correct="b">
+      <div class="q4-stem"><span class="q4-num">問4</span>電気泳動実験で、塩酸を中央のろ紙にたらした。色が変わるのはどれか。</div>
+      <div class="q4-choices">
+        <button class="q4-c" data-v="a">ア：a（青リトマス・＋側）</button>
+        <button class="q4-c" data-v="b">イ：b（青リトマス・－側）</button>
+        <button class="q4-c" data-v="c">ウ：c（赤リトマス・＋側）</button>
+        <button class="q4-c" data-v="d">エ：d（赤リトマス・－側）</button>
+      </div>
+      <div class="q4-exp">正解は<strong>イ：b</strong>。H<sup>+</sup>（陽イオン）は－極に引き寄せられ、－側にある青リトマス紙（b）を赤に変えます。</div>
+    </div>
+
+    <div class="q4" data-correct="c">
+      <div class="q4-stem"><span class="q4-num">問5</span>電気泳動実験で、水酸化ナトリウム水溶液をたらした。色が変わるのはどれか。</div>
+      <div class="q4-choices">
+        <button class="q4-c" data-v="a">ア：a（青リトマス・＋側）</button>
+        <button class="q4-c" data-v="b">イ：b（青リトマス・－側）</button>
+        <button class="q4-c" data-v="c">ウ：c（赤リトマス・＋側）</button>
+        <button class="q4-c" data-v="d">エ：d（赤リトマス・－側）</button>
+      </div>
+      <div class="q4-exp">正解は<strong>ウ：c</strong>。OH<sup>−</sup>（陰イオン）は＋極に引き寄せられ、＋側にある赤リトマス紙（c）を青に変えます。</div>
+    </div>
+
+    <div class="q4" data-correct="a">
+      <div class="q4-stem"><span class="q4-num">問6</span>アルカリ性の原因となるイオンはどれか。</div>
+      <div class="q4-choices">
+        <button class="q4-c" data-v="a">ア：水酸化物イオン OH<sup>−</sup></button>
+        <button class="q4-c" data-v="b">イ：水素イオン H<sup>+</sup></button>
+        <button class="q4-c" data-v="c">ウ：ナトリウムイオン Na<sup>+</sup></button>
+        <button class="q4-c" data-v="d">エ：塩化物イオン Cl<sup>−</sup></button>
+      </div>
+      <div class="q4-exp">正解は<strong>ア：水酸化物イオン OH<sup>−</sup></strong>。アルカリ性の原因は OH<sup>−</sup> です。H<sup>+</sup> は酸性の原因。</div>
+    </div>
+
+    <div class="mt-block-result"></div>
+    <div style="text-align:center;"><button class="mt-block-reset">↻ もう一度</button></div>
+  </div>
+
+  <div class="ranking">
+    <h3>🏆 チャレンジ ベストタイム</h3>
+    <div style="font-size:12px;color:#78909C;margin-bottom:4px;">酸とアルカリの性質（5-1）</div>
+    <ul id="ranking-u5-1" class="ranking-list"><li style="color:#aaa;font-size:12px;">まだ記録がありません</li></ul>
+    <div style="font-size:12px;color:#78909C;margin:8px 0 4px;">電気泳動実験（5-2）</div>
+    <ul id="ranking-u5-2" class="ranking-list"><li style="color:#aaa;font-size:12px;">まだ記録がありません</li></ul>
+    <button class="btn outline" onclick="clearRanking('u5-1');clearRanking('u5-2')">記録をリセット</button>
+  </div>
+</div>
+
+
+<!-- ページ完了 -->
+<div class="next-actions">
+  <h3>🎉 第1回 お疲れさまでした！</h3>
+  <p>電解質・原子の成り立ち・イオン・電離式・酸とアルカリをひととおり学びました。<br>次回は「中和・塩」です。</p>
+  <div class="links">
+    <a href="ion2.html">📖 第2回へ進む（酸・アルカリ・中和）</a>
+    <a href="index.html">📊 単元表へ</a>
+  </div>
+</div>
+
+<nav class="pagenav">
+  <a href="index.html">
+    <span class="label">◀ HOME</span>
+    <span class="title">単元表</span>
+  </a>
+  <a href="ion2.html" class="next">
+    <span class="label">NEXT ▶</span>
+    <span class="title">第2回 酸・アルカリ・中和</span>
+  </a>
+</nav>
+
+</main>
+</div>
+
+<!-- ========================================
+     JavaScript
+     ======================================== -->
+<script>
+(function () {
+  'use strict';
+
+  /* ── ミニテスト(○×) ── */
+  function setupMinitests(block) {
+    var tests = block.querySelectorAll('.minitest');
+    var resultEl = block.querySelector('.mt-block-result');
+    var resetBtn = block.querySelector('.mt-block-reset');
+    var answered = 0;
+    var correct = 0;
+
+    tests.forEach(function (test) {
+      var ans = test.dataset.correct;
+      var btns = test.querySelectorAll('.mt-c');
+      var exp = test.querySelector('.mt-exp');
+
+      btns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (test.dataset.done) return;
+          test.dataset.done = '1';
+          var chosen = btn.dataset.v;
+          btns.forEach(function (b) {
+            b.classList.add('disabled');
+            if (b.dataset.v === ans) b.classList.add('correct');
+          });
+          if (chosen !== ans) {
+            btn.classList.remove('correct');
+            btn.classList.add('incorrect');
+            if (exp) exp.classList.add('show-err');
+          } else {
+            correct++;
+          }
+          if (exp) exp.classList.add('visible');
+          answered++;
+          if (answered === tests.length) showResult();
+        });
+      });
+    });
+
+    /* ── 4択(q4) ── */
+    var q4s = block.querySelectorAll('.q4');
+    q4s.forEach(function (q4) {
+      var ans = q4.dataset.correct;
+      var btns = q4.querySelectorAll('.q4-c');
+      var exp = q4.querySelector('.q4-exp');
+
+      btns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (q4.dataset.done) return;
+          q4.dataset.done = '1';
+          var chosen = btn.dataset.v;
+          btns.forEach(function (b) {
+            b.classList.add('disabled');
+            if (b.dataset.v === ans) b.classList.add('correct');
+          });
+          if (chosen !== ans) {
+            btn.classList.remove('correct');
+            btn.classList.add('incorrect');
+          } else {
+            correct++;
+          }
+          if (exp) exp.classList.add('visible');
+          answered++;
+          if (answered === tests.length + q4s.length) showResult();
+        });
+      });
+    });
+
+    var total = tests.length + q4s.length;
+
+    function showResult() {
+      if (!resultEl) return;
+      var pct = Math.round(correct / total * 100);
+      var msg = '';
+      if (pct === 100) msg = '🎉 全問正解！すばらしい！';
+      else if (pct >= 70) msg = '👍 よくできました！もう少し！';
+      else msg = '📖 もう一度確認しましょう。';
+      resultEl.innerHTML = '<span style="color:#1565C0;">' + correct + ' / ' + total + ' 正解</span>　' + msg;
+    }
+
+    if (resetBtn) {
+      resetBtn.addEventListener('click', function () {
+        answered = 0; correct = 0;
+        tests.forEach(function (test) {
+          delete test.dataset.done;
+          test.querySelectorAll('.mt-c').forEach(function (b) {
+            b.classList.remove('correct', 'incorrect', 'disabled');
+          });
+          var exp = test.querySelector('.mt-exp');
+          if (exp) { exp.classList.remove('visible', 'show-err'); }
+        });
+        q4s.forEach(function (q4) {
+          delete q4.dataset.done;
+          q4.querySelectorAll('.q4-c').forEach(function (b) {
+            b.classList.remove('correct', 'incorrect', 'disabled');
+          });
+          var exp = q4.querySelector('.q4-exp');
+          if (exp) exp.classList.remove('visible');
+        });
+        if (resultEl) resultEl.innerHTML = '';
+      });
+    }
+  }
+
+  document.querySelectorAll('.minitest-block').forEach(setupMinitests);
+
+  /* ── チャレンジモード ── */
+  function setupChallenge(stageEl) {
+    var chId       = stageEl.dataset.chId;
+    var targetSel  = stageEl.dataset.target;
+    var readBox    = stageEl.querySelector(targetSel || '.read-box');
+    var wbInline   = stageEl.querySelector('.word-bank-inline');
+    var wbWords    = stageEl.querySelector('.wb-words');
+    var timerEl    = stageEl.querySelector('.challenge-timer');
+    var startBtn   = stageEl.querySelector('.ch-btn.start');
+    var judgeBtn   = stageEl.querySelector('.ch-btn.judge');
+    var exampleBtn = stageEl.querySelector('.ch-btn.example');
+    var resetBtn2  = stageEl.querySelector('.ch-btn.reset');
+    var cancelBtn  = stageEl.querySelector('.ch-btn.cancel');
+
+    if (!startBtn) return;
+
+    var blanks     = [];
+    var words      = [];
+    var selected   = null;
+    var timerInt   = null;
+    var startTime  = 0;
+    var running    = false;
+
+    function collectBlanks() {
+      blanks = Array.from(stageEl.querySelectorAll('.kw-blank'));
+      words = blanks.map(function (b) { return b.dataset.a; });
+    }
+
+    function shuffle(arr) {
+      var a = arr.slice();
+      for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = a[i]; a[i] = a[j]; a[j] = t;
+      }
+      return a;
+    }
+
+    function buildWordBank() {
+      if (!wbWords) return;
+      wbWords.innerHTML = '';
+      var ws = shuffle(words.slice());
+      ws.forEach(function (w) {
+        var btn = document.createElement('button');
+        btn.className = 'wb-word';
+        btn.textContent = w;
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('.wb-word').forEach(function (b) { b.classList.remove('selected'); });
+          btn.classList.add('selected');
+          selected = w;
+        });
+        wbWords.appendChild(btn);
+      });
+    }
+
+    function hideAnswer(blank) {
+      blank.textContent = '　　　　';
+      blank.classList.remove('active');
+      blank.style.color = '';
+      blank._filled = '';
+    }
+
+    function startChallenge() {
+      collectBlanks();
+      blanks.forEach(hideAnswer);
+      buildWordBank();
+      if (wbInline) wbInline.classList.add('visible');
+      if (timerEl) timerEl.style.display = '';
+      startTime = Date.now();
+      running = true;
+      timerInt = setInterval(function () {
+        var el = timerEl;
+        if (!el) return;
+        var ms = Date.now() - startTime;
+        var s = Math.floor(ms / 1000);
+        var m = Math.floor(s / 60);
+        s = s % 60;
+        var d = Math.floor((ms % 1000) / 100);
+        el.textContent = m + ':' + (s < 10 ? '0' : '') + s + '.' + d;
+      }, 100);
+
+      [startBtn].forEach(function (b) { if (b) b.style.display = 'none'; });
+      [judgeBtn, exampleBtn, resetBtn2, cancelBtn].forEach(function (b) { if (b) b.style.display = ''; });
+
+      blanks.forEach(function (blank) {
+        blank.addEventListener('click', onBlankClick);
+      });
+      selected = null;
+    }
+
+    function onBlankClick(e) {
+      if (!running) return;
+      if (!selected) { alert('先に語群から単語を選んでください。'); return; }
+      var blank = e.currentTarget;
+      blank.textContent = selected;
+      blank._filled = selected;
+      blank.classList.add('active');
+      var wBtn = Array.from(wbWords ? wbWords.querySelectorAll('.wb-word') : []).find(function (b) { return b.textContent === selected && !b.classList.contains('used'); });
+      if (wBtn) wBtn.classList.add('used');
+      selected = null;
+      document.querySelectorAll('.wb-word').forEach(function (b) { b.classList.remove('selected'); });
+    }
+
+    function judge() {
+      var correct = 0;
+      blanks.forEach(function (blank) {
+        if (blank._filled === blank.dataset.a) {
+          blank.style.color = '#2E7D32';
+          correct++;
+        } else {
+          blank.style.color = '#C62828';
+        }
+      });
+      clearInterval(timerInt); running = false;
+      var ms = Date.now() - startTime;
+      if (correct === blanks.length) {
+        saveRanking(chId, ms);
+        updateRankingUI(chId);
+        alert('🎉 全問正解！ タイム: ' + formatTime(ms));
+      } else {
+        alert(correct + ' / ' + blanks.length + ' 正解。やり直す場合はリセットを。');
+      }
+    }
+
+    function showExample() {
+      blanks.forEach(function (blank) {
+        blank.textContent = blank.dataset.a;
+        blank._filled = blank.dataset.a;
+        blank.classList.add('active');
+        blank.style.color = '#1565C0';
+      });
+      clearInterval(timerInt); running = false;
+    }
+
+    function resetChallenge() {
+      clearInterval(timerInt); running = false;
+      blanks.forEach(function (blank) {
+        blank.removeEventListener('click', onBlankClick);
+        blank.textContent = blank.dataset.a;
+        blank.classList.remove('active');
+        blank.style.color = '';
+        blank._filled = '';
+      });
+      if (wbInline) wbInline.classList.remove('visible');
+      if (timerEl) { timerEl.textContent = '0:00.0'; timerEl.style.display = 'none'; }
+      [judgeBtn, exampleBtn, resetBtn2, cancelBtn].forEach(function (b) { if (b) b.style.display = 'none'; });
+      if (startBtn) startBtn.style.display = '';
+    }
+
+    if (startBtn)   startBtn.addEventListener('click', startChallenge);
+    if (judgeBtn)   judgeBtn.addEventListener('click', judge);
+    if (exampleBtn) exampleBtn.addEventListener('click', showExample);
+    if (resetBtn2)  resetBtn2.addEventListener('click', resetChallenge);
+    if (cancelBtn)  cancelBtn.addEventListener('click', resetChallenge);
+  }
+
+  document.querySelectorAll('.stage.challenge').forEach(setupChallenge);
+
+  /* ── ランキング ── */
+  function rankKey(id) { return 'gamba_rank_' + id; }
+
+  function saveRanking(id, ms) {
+    try {
+      var data = JSON.parse(localStorage.getItem(rankKey(id)) || '[]');
+      data.push(ms);
+      data.sort(function (a, b) { return a - b; });
+      data = data.slice(0, 5);
+      localStorage.setItem(rankKey(id), JSON.stringify(data));
+    } catch(e) {}
+  }
+
+  function formatTime(ms) {
+    var s = Math.floor(ms / 1000);
+    var m = Math.floor(s / 60);
+    s = s % 60;
+    var d = Math.floor((ms % 1000) / 100);
+    return m + ':' + (s < 10 ? '0' : '') + s + '.' + d;
+  }
+
+  function updateRankingUI(id) {
+    var el = document.getElementById('ranking-' + id);
+    if (!el) return;
+    try {
+      var data = JSON.parse(localStorage.getItem(rankKey(id)) || '[]');
+      if (!data.length) { el.innerHTML = '<li style="color:#aaa;font-size:12px;">まだ記録がありません</li>'; return; }
+      el.innerHTML = data.map(function (ms, i) {
+        return '<li>' + ['🥇','🥈','🥉','4位','5位'][i] + '&nbsp;' + formatTime(ms) + '</li>';
+      }).join('');
+    } catch(e) {}
+  }
+
+  window.clearRanking = function (id) {
+    try { localStorage.removeItem(rankKey(id)); } catch(e) {}
+    updateRankingUI(id);
+  };
+
+  ['u1','u2','u3','u3-1','u3-2','u3-3','u4','u5-1','u5-2'].forEach(updateRankingUI);
+
+
+})();
+</script>
+
+<!-- ══════════════════════════════════════
+     暗記ドリル モーダル
+     ══════════════════════════════════════ -->
+<div id="d-overlay" style="display:none;" onclick="if(event.target===this)Drill.close()">
+  <div id="d-modal" role="dialog" aria-modal="true" aria-label="イオン式 暗記ドリル">
+    <button id="d-close" onclick="Drill.close()" aria-label="閉じる">✕</button>
+    <div class="d-title">⚡ イオン式 暗記ドリル</div>
+
+    <!-- タブ -->
+    <div class="d-tabs">
+      <button class="d-tab active" id="d-tab-flash" onclick="Drill.switchMode('flash')">📇 フラッシュカード</button>
+      <button class="d-tab"        id="d-tab-quiz"  onclick="Drill.switchMode('quiz')">❓ 4択クイズ</button>
+    </div>
+
+    <!-- ── フラッシュカード ── -->
+    <div id="d-flash-section">
+      <div class="d-dir">
+        <button class="d-dir-btn active" id="d-dir-n2f" onclick="Drill.setFlashDir('name2formula')">名前 → 式</button>
+        <button class="d-dir-btn"        id="d-dir-f2n" onclick="Drill.setFlashDir('formula2name')">式 → 名前</button>
+      </div>
+      <div class="d-speed">
+        <button class="d-spd sm active" id="d-spd-manual" onclick="Drill.setSpeed(0)">手動</button>
+        <button class="d-spd sa"        id="d-spd-2s"     onclick="Drill.setSpeed(2000)">⏱ 2秒</button>
+        <button class="d-spd sa"        id="d-spd-3s"     onclick="Drill.setSpeed(3000)">⏱ 3秒</button>
+        <button class="d-spd sa"        id="d-spd-5s"     onclick="Drill.setSpeed(5000)">⏱ 5秒</button>
+      </div>
+      <div class="d-cdwrap" id="d-cdwrap" style="display:none;"><div class="d-cdfill" id="d-cdfill"></div></div>
+      <div class="d-prow">
+        <div class="d-pbar"><div class="d-pfill" id="d-pfill" style="width:0%"></div></div>
+        <div class="d-ptxt" id="d-ptxt">0 / 8</div>
+      </div>
+      <div class="d-scene" id="d-scene" onclick="Drill.flipCard()">
+        <div class="d-card3d" id="d-card3d">
+          <div class="d-face d-front">
+            <div class="d-clabel" id="d-flabel">イオン名</div>
+            <div class="d-ccnt"   id="d-fcnt">−</div>
+          </div>
+          <div class="d-face d-back">
+            <div class="d-clabel" id="d-blabel">イオン式</div>
+            <div class="d-ccnt"   id="d-bcnt">−</div>
+            <div class="d-badge"  id="d-bbadge"></div>
+          </div>
+        </div>
+      </div>
+      <div class="d-fhint" id="d-fhint">👆 タップしてめくる</div>
+      <div class="d-jarea" id="d-jarea" style="display:none;">
+        <button class="d-jbtn d-ng" onclick="Drill.judgeCard(false)">✗ もう一度</button>
+        <button class="d-jbtn d-ok" onclick="Drill.judgeCard(true)">✓ わかった！</button>
+      </div>
+      <div class="d-remain" id="d-remain">残り 8 枚</div>
+      <div id="d-fresult" style="display:none;"></div>
+    </div>
+
+    <!-- ── 4択クイズ ── -->
+    <div id="d-quiz-section" style="display:none;">
+      <div class="d-dir">
+        <button class="d-dir-btn active" id="d-qdir-n2f" onclick="Drill.setQuizDir('name2formula')">名前 → 式</button>
+        <button class="d-dir-btn"        id="d-qdir-f2n" onclick="Drill.setQuizDir('formula2name')">式 → 名前</button>
+      </div>
+      <div class="d-qhdr">
+        <span id="d-qcnt">問 1 / 8</span>
+        <span class="d-qscore" id="d-qscore">正解: 0</span>
+      </div>
+      <div id="d-qarea">
+        <div class="d-qcard">
+          <div class="d-qstem" id="d-qstem"></div>
+          <div class="d-qmain" id="d-qmain"></div>
+          <div class="d-qlist" id="d-qchoices"></div>
+          <div class="d-qexp"  id="d-qexp"></div>
+          <div style="text-align:center;">
+            <button class="d-qnext" id="d-qnext" onclick="Drill.nextQuizQ()">次の問題 ▶</button>
+          </div>
+        </div>
+      </div>
+      <div id="d-qresult" style="display:none;"></div>
+    </div>
+
+  </div><!-- /#d-modal -->
+</div><!-- /#d-overlay -->
+
+<script>
+(function(){
+'use strict';
+
+/* ── イオンデータ ── */
+var IONS = [
+  { name: '水素イオン',       formula: 'H<sup>+</sup>',               type: 'plus'  },
+  { name: 'ナトリウムイオン', formula: 'Na<sup>+</sup>',              type: 'plus'  },
+  { name: '銅イオン',         formula: 'Cu<sup>2+</sup>',             type: 'plus'  },
+  { name: '亜鉛イオン',       formula: 'Zn<sup>2+</sup>',             type: 'plus'  },
+  { name: 'バリウムイオン',   formula: 'Ba<sup>2+</sup>',             type: 'plus'  },
+  { name: '塩化物イオン',     formula: 'Cl<sup>−</sup>',              type: 'minus' },
+  { name: '水酸化物イオン',   formula: 'OH<sup>−</sup>',              type: 'minus' },
+  { name: '硫酸イオン',       formula: 'SO<sub>4</sub><sup>2−</sup>', type: 'minus' }
+];
+
+function shuffle(arr) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+/* d- プレフィックス付き ID を取得 */
+function el(id) { return document.getElementById('d-' + id); }
+
+/* ══ フラッシュカード状態 ══ */
+var F = { deck: [], current: 0, ok: [], ng: [], dir: 'name2formula', flipped: false, speed: 0 };
+var autoFlipTimer = null, autoAdvanceTimer = null;
+
+function stopAutoTimers() {
+  if (autoFlipTimer)    { clearTimeout(autoFlipTimer);    autoFlipTimer    = null; }
+  if (autoAdvanceTimer) { clearTimeout(autoAdvanceTimer); autoAdvanceTimer = null; }
+}
+
+function startCountdown(ms) {
+  var fill = el('cdfill');
+  fill.style.transition = 'none';
+  fill.style.width = '100%';
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
+      fill.style.transition = 'width ' + (ms / 1000).toFixed(1) + 's linear';
+      fill.style.width = '0%';
+    });
+  });
+}
+
+function resetCountdown() {
+  var fill = el('cdfill');
+  fill.style.transition = 'none';
+  fill.style.width = '100%';
+}
+
+function startAutoSequence() {
+  if (F.speed === 0) return;
+  stopAutoTimers();
+  var half = Math.round(F.speed / 2);
+  startCountdown(F.speed);
+  autoFlipTimer = setTimeout(function() {
+    autoFlipTimer = null;
+    if (!F.flipped) { doFlip(); }
+    autoAdvanceTimer = setTimeout(function() {
+      autoAdvanceTimer = null;
+      autoAdvance();
+    }, half);
+  }, half);
+}
+
+function autoAdvance() {
+  stopAutoTimers();
+  F.ok.push(F.deck[F.current]);
+  F.current++;
+  if (F.current >= F.deck.length) { showFlashResult(); }
+  else { renderFlashCard(); updateFlashProgress(); startAutoSequence(); }
+}
+
+function initFlash(retryNG) {
+  stopAutoTimers();
+  var indices = retryNG ? F.ng.slice() : IONS.map(function(_,i){ return i; });
+  F.deck = shuffle(indices); F.current = 0; F.ok = []; F.ng = []; F.flipped = false;
+  el('fresult').style.display  = 'none';
+  el('scene').style.display    = '';
+  el('fhint').style.display    = '';
+  el('jarea').style.display    = 'none';
+  el('remain').style.display   = '';
+  renderFlashCard();
+  updateFlashProgress();
+  if (F.speed > 0) startAutoSequence();
+}
+
+function renderFlashCard() {
+  var ion = IONS[F.deck[F.current]];
+  var n2f = (F.dir === 'name2formula');
+  el('flabel').textContent = n2f ? 'イオン名' : 'イオン式';
+  el('fcnt').innerHTML     = n2f ? ion.name   : ion.formula;
+  el('blabel').textContent = n2f ? 'イオン式' : 'イオン名';
+  el('bcnt').innerHTML     = n2f ? ion.formula : ion.name;
+  var badge = el('bbadge');
+  badge.textContent = ion.type === 'plus' ? '陽イオン（＋）' : '陰イオン（－）';
+  badge.className   = 'd-badge ' + ion.type;
+  F.flipped = false;
+  var c = el('card3d');
+  c.style.transition = 'none';
+  c.classList.remove('flipped');
+  setTimeout(function(){ c.style.transition = ''; }, 20);
+  el('jarea').style.display   = 'none';
+  el('fhint').style.visibility = '';
+  updateFlipHint();
+  el('remain').textContent = '残り ' + (F.deck.length - F.current) + ' 枚';
+}
+
+function doFlip() {
+  F.flipped = true;
+  el('card3d').classList.add('flipped');
+  el('jarea').style.display    = 'flex';
+  el('fhint').style.visibility = 'hidden';
+}
+
+function updateFlipHint() {
+  if (F.speed > 0) {
+    el('fhint').textContent = '自動めくり中… タップで今すぐめくる';
+    el('fhint').style.color = '#FF8F00';
+  } else {
+    el('fhint').textContent = '👆 タップしてめくる';
+    el('fhint').style.color = '';
+  }
+}
+
+function updateFlashProgress() {
+  var total = F.deck.length, done = F.current;
+  var pct = total > 0 ? Math.round(done / total * 100) : 0;
+  el('pfill').style.width = pct + '%';
+  el('ptxt').textContent  = done + ' / ' + total;
+}
+
+function showFlashResult() {
+  stopAutoTimers();
+  el('scene').style.display   = 'none';
+  el('fhint').style.display   = 'none';
+  el('jarea').style.display   = 'none';
+  el('remain').style.display  = 'none';
+  el('cdwrap').style.display  = 'none';
+  el('pfill').style.width     = '100%';
+
+  var ok = F.ok.length, ng = F.ng.length, total = ok + ng;
+  var perfect = (ng === 0);
+  var emoji = perfect ? '🎉' : (ok >= total * 0.7 ? '👍' : '📖');
+  var modeNote = (F.speed > 0) ? '<p style="font-size:12px;color:#90A4AE;margin-bottom:8px;">※自動モードは全カードを「わかった」として記録します</p>' : '';
+
+  var ngHTML = '';
+  if (ng > 0) {
+    ngHTML = '<div class="d-nglist"><h3>🔴 もう一度覚えよう（' + ng + '個）</h3>';
+    F.ng.forEach(function(i) {
+      ngHTML += '<div class="d-ngitem"><span>' + IONS[i].name + '</span><span class="d-ngf">' + IONS[i].formula + '</span></div>';
+    });
+    ngHTML += '</div>';
+  }
+
+  var retryBtn = (ng > 0)
+    ? '<button class="d-jbtn d-ng" style="margin-top:0;" onclick="Drill.initFlash(true)">🔴 苦手カードだけ再挑戦</button>'
+    : '';
+
+  el('fresult').innerHTML = '<div style="text-align:center;padding:8px 0;">'
+    + '<h2 style="font-size:18px;font-weight:800;color:#1565C0;margin-bottom:8px;">' + emoji + '&ensp;結果</h2>'
+    + '<p style="font-size:20px;font-weight:800;color:#1565C0;margin-bottom:8px;">' + ok + ' / ' + total + '　わかった！</p>'
+    + modeNote + ngHTML
+    + '<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:10px;">'
+    + retryBtn
+    + '<button class="d-jbtn d-ok" style="margin-top:0;" onclick="Drill.initFlash(false)">↻ 全カード最初から</button>'
+    + '</div></div>';
+  el('fresult').style.display = '';
+  updateFlashProgress();
+}
+
+function setSpeed(ms) {
+  stopAutoTimers();
+  F.speed = ms;
+  var map = { 0: 'spd-manual', 2000: 'spd-2s', 3000: 'spd-3s', 5000: 'spd-5s' };
+  Object.keys(map).forEach(function(k) { el(map[k]).classList.remove('active'); });
+  if (map[ms]) el(map[ms]).classList.add('active');
+  el('cdwrap').style.display = (ms > 0) ? '' : 'none';
+  if (!F.flipped) updateFlipHint();
+  var resultShowing = el('fresult').style.display !== 'none';
+  if (ms > 0 && !resultShowing) {
+    if (!F.flipped) { resetCountdown(); startAutoSequence(); }
+    else {
+      startCountdown(Math.round(ms / 2));
+      autoAdvanceTimer = setTimeout(function() { autoAdvanceTimer = null; autoAdvance(); }, Math.round(ms / 2));
+    }
+  } else if (ms === 0) { resetCountdown(); }
+}
+
+function setFlashDir(dir) {
+  F.dir = dir;
+  el('dir-n2f').classList.toggle('active', dir === 'name2formula');
+  el('dir-f2n').classList.toggle('active', dir === 'formula2name');
+  initFlash(false);
+}
+
+/* ══ 4択クイズ ══ */
+var Q = { questions: [], current: 0, score: 0, dir: 'name2formula' };
+
+function initQuiz() {
+  var order = shuffle(IONS.map(function(_,i){ return i; }));
+  Q.questions = order.map(function(correct) {
+    var others = shuffle(IONS.map(function(_,i){ return i; }).filter(function(i){ return i !== correct; })).slice(0,3);
+    return { correct: correct, choices: shuffle([correct].concat(others)) };
+  });
+  Q.current = 0; Q.score = 0;
+  el('qresult').style.display = 'none';
+  el('qarea').style.display   = '';
+  renderQuizQ();
+}
+
+function renderQuizQ() {
+  var q   = Q.questions[Q.current];
+  var ion = IONS[q.correct];
+  var n2f = (Q.dir === 'name2formula');
+  el('qcnt').textContent   = '問 ' + (Q.current + 1) + ' / ' + Q.questions.length;
+  el('qscore').textContent = '正解: ' + Q.score;
+  if (n2f) { el('qstem').textContent = 'このイオンのイオン式はどれか。'; el('qmain').textContent = ion.name; }
+  else      { el('qstem').textContent = 'このイオン式のイオン名はどれか。'; el('qmain').innerHTML  = ion.formula; }
+
+  var choicesEl = el('qchoices');
+  choicesEl.innerHTML = '';
+  q.choices.forEach(function(idx) {
+    var btn = document.createElement('button');
+    btn.className = 'd-qc';
+    btn.innerHTML = n2f ? IONS[idx].formula : IONS[idx].name;
+    btn.dataset.idx = idx;
+    btn.addEventListener('click', function(){ onQuizChoice(idx, q.correct, n2f); });
+    choicesEl.appendChild(btn);
+  });
+
+  var exp = el('qexp');
+  exp.className = 'd-qexp';
+  exp.innerHTML = '';
+  var nb = el('qnext');
+  nb.className = 'd-qnext';
+  nb.textContent = (Q.current + 1 < Q.questions.length) ? '次の問題 ▶' : '結果を見る ▶';
+}
+
+function onQuizChoice(chosen, correct, n2f) {
+  document.querySelectorAll('#d-qchoices .d-qc').forEach(function(b) {
+    b.disabled = true;
+    var i = parseInt(b.dataset.idx);
+    if (i === correct) b.classList.add('correct');
+    else if (i === chosen) b.classList.add('incorrect');
+  });
+  var ion = IONS[correct];
+  var exp = el('qexp');
+  if (chosen === correct) {
+    Q.score++;
+    exp.className = 'd-qexp show';
+    exp.innerHTML = '✓ 正解！&emsp;' + ion.name + '　＝　' + ion.formula;
+  } else {
+    exp.className = 'd-qexp show err';
+    exp.innerHTML = '× 不正解。正解：' + ion.name + '　＝　' + ion.formula;
+  }
+  el('qscore').textContent = '正解: ' + Q.score;
+  el('qnext').className = 'd-qnext show';
+}
+
+function nextQuizQ() {
+  Q.current++;
+  if (Q.current >= Q.questions.length) showQuizResult();
+  else renderQuizQ();
+}
+
+function showQuizResult() {
+  el('qarea').style.display = 'none';
+  var s = Q.score, t = Q.questions.length;
+  var pct = Math.round(s / t * 100);
+  var emoji, msg;
+  if (pct === 100)    { emoji = '🎉'; msg = '全問正解！完璧です！'; }
+  else if (pct >= 75) { emoji = '👍'; msg = 'よくできました！あと少し！'; }
+  else if (pct >= 50) { emoji = '📖'; msg = '半分以上正解。もう一回やってみよう！'; }
+  else                { emoji = '💪'; msg = 'カードで練習してからもう一度チャレンジ！'; }
+  el('qresult').innerHTML = '<div class="d-qres">'
+    + '<div class="d-bscore">' + s + '<span style="font-size:.4em;color:#90A4AE;">/' + t + '</span></div>'
+    + '<div class="d-ssub">正解率 ' + pct + '%</div>'
+    + '<div class="d-smsg">' + emoji + '&ensp;' + msg + '</div>'
+    + '<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;">'
+    + '<button class="d-jbtn d-ok" style="margin-top:0;" onclick="Drill.initQuiz()">↻ もう一度</button>'
+    + '<button class="d-jbtn d-ng" style="margin-top:0;background:#1B5E20;" onclick="Drill.switchMode(\'flash\')">📇 カードで復習</button>'
+    + '</div></div>';
+  el('qresult').style.display = '';
+}
+
+function setQuizDir(dir) {
+  Q.dir = dir;
+  el('qdir-n2f').classList.toggle('active', dir === 'name2formula');
+  el('qdir-f2n').classList.toggle('active', dir === 'formula2name');
+  initQuiz();
+}
+
+function switchMode(mode) {
+  if (mode === 'flash') stopAutoTimers();
+  el('flash-section').style.display = (mode === 'flash') ? '' : 'none';
+  el('quiz-section').style.display  = (mode === 'quiz')  ? '' : 'none';
+  el('tab-flash').classList.toggle('active', mode === 'flash');
+  el('tab-quiz').classList.toggle('active',  mode === 'quiz');
+}
+
+/* ── 公開 API ── */
+window.Drill = {
+  open: function() {
+    var ov = document.getElementById('d-overlay');
+    ov.style.display = '';
+    document.body.style.overflow = 'hidden';
+    if (F.deck.length === 0) { initFlash(false); initQuiz(); }
+  },
+  close: function() {
+    stopAutoTimers();
+    document.getElementById('d-overlay').style.display = 'none';
+    document.body.style.overflow = '';
+  },
+  flipCard:     function() {
+    if (F.flipped) return;
+    if (autoFlipTimer) { clearTimeout(autoFlipTimer); autoFlipTimer = null; }
+    doFlip();
+  },
+  judgeCard:    function(ok) {
+    stopAutoTimers(); resetCountdown();
+    var idx = F.deck[F.current];
+    (ok ? F.ok : F.ng).push(idx);
+    F.current++;
+    if (F.current >= F.deck.length) { showFlashResult(); }
+    else { renderFlashCard(); updateFlashProgress(); if (F.speed > 0) startAutoSequence(); }
+  },
+  initFlash:    initFlash,
+  setFlashDir:  setFlashDir,
+  setSpeed:     setSpeed,
+  initQuiz:     initQuiz,
+  nextQuizQ:    nextQuizQ,
+  setQuizDir:   setQuizDir,
+  switchMode:   switchMode
+};
+
+})();
+</script>
+
+<!-- ══════════════════════════════════════
+     電離式ドリル モーダル
+     ══════════════════════════════════════ -->
+<div id="dk-overlay" style="display:none;" onclick="if(event.target===this)DKDrill.close()">
+  <div id="dk-modal" role="dialog" aria-modal="true" aria-label="電離式 暗記ドリル">
+    <button id="dk-close" onclick="DKDrill.close()" aria-label="閉じる">✕</button>
+    <div class="dk-title">🧪 電離式 暗記ドリル</div>
+
+    <!-- タブ -->
+    <div class="dk-tabs">
+      <button class="dk-tab active" id="dk-tab-flash" onclick="DKDrill.switchMode('flash')">📇 フラッシュカード</button>
+      <button class="dk-tab"        id="dk-tab-quiz"  onclick="DKDrill.switchMode('quiz')">❓ 4択クイズ</button>
+    </div>
+
+    <!-- ── フラッシュカード ── -->
+    <div id="dk-flash-section">
+      <div class="dk-dir">
+        <button class="dk-dirbtn active" id="dk-dir-n2f" onclick="DKDrill.setFlashDir('name2eq')">名前 → 電離式</button>
+        <button class="dk-dirbtn"        id="dk-dir-f2n" onclick="DKDrill.setFlashDir('eq2name')">電離式 → 名前</button>
+      </div>
+      <div class="dk-spds">
+        <button class="dk-spd sm active" id="dk-spd-manual" onclick="DKDrill.setSpeed(0)">手動</button>
+        <button class="dk-spd sa"        id="dk-spd-2s"     onclick="DKDrill.setSpeed(2000)">⏱ 2秒</button>
+        <button class="dk-spd sa"        id="dk-spd-3s"     onclick="DKDrill.setSpeed(3000)">⏱ 3秒</button>
+        <button class="dk-spd sa"        id="dk-spd-5s"     onclick="DKDrill.setSpeed(5000)">⏱ 5秒</button>
+      </div>
+      <div class="dk-cdwrap" id="dk-cdwrap" style="display:none;"><div class="dk-cdfill" id="dk-cdfill"></div></div>
+      <div class="dk-prow">
+        <div class="dk-pbar"><div class="dk-pfill" id="dk-pfill" style="width:0%"></div></div>
+        <div class="dk-ptxt" id="dk-ptxt">0 / 7</div>
+      </div>
+      <div class="dk-scene" id="dk-scene" onclick="DKDrill.flipCard()">
+        <div class="dk-card3d" id="dk-card3d">
+          <div class="dk-face dk-front">
+            <div class="dk-clabel" id="dk-flabel">電解質名</div>
+            <div id="dk-fcnt" class="dk-cname">−</div>
+          </div>
+          <div class="dk-face dk-back">
+            <div class="dk-clabel" id="dk-blabel">電離式</div>
+            <div id="dk-bcnt" class="dk-ceqb">−</div>
+            <div id="dk-bnote"></div>
+          </div>
+        </div>
+      </div>
+      <div class="dk-fhint" id="dk-fhint">👆 タップしてめくる</div>
+      <div class="dk-jarea" id="dk-jarea" style="display:none;">
+        <button class="dk-jbtn dk-jng" onclick="DKDrill.judgeCard(false)">✗ もう一度</button>
+        <button class="dk-jbtn dk-jok" onclick="DKDrill.judgeCard(true)">✓ わかった！</button>
+      </div>
+      <div class="dk-rem" id="dk-rem">残り 7 枚</div>
+      <div id="dk-fresult" style="display:none;"></div>
+    </div>
+
+    <!-- ── 4択クイズ ── -->
+    <div id="dk-quiz-section" style="display:none;">
+      <div class="dk-dir">
+        <button class="dk-dirbtn active" id="dk-qdir-n2f" onclick="DKDrill.setQuizDir('name2eq')">名前 → 電離式</button>
+        <button class="dk-dirbtn"        id="dk-qdir-f2n" onclick="DKDrill.setQuizDir('eq2name')">電離式 → 名前</button>
+      </div>
+      <div class="dk-qhdr">
+        <span id="dk-qcnt">問 1 / 7</span>
+        <span class="dk-qscr" id="dk-qscr">正解: 0</span>
+      </div>
+      <div id="dk-qarea">
+        <div class="dk-qcard">
+          <div class="dk-qstem" id="dk-qstem"></div>
+          <div class="dk-qmain" id="dk-qmain"></div>
+          <div class="dk-qlist" id="dk-qchoices"></div>
+          <div class="dk-qexp"  id="dk-qexp"></div>
+          <div style="text-align:center;">
+            <button class="dk-qnext" id="dk-qnext" onclick="DKDrill.nextQuizQ()">次の問題 ▶</button>
+          </div>
+        </div>
+      </div>
+      <div id="dk-qresult" style="display:none;"></div>
+    </div>
+
+  </div><!-- /#dk-modal -->
+</div><!-- /#dk-overlay -->
+
+<script>
+(function(){
+'use strict';
+
+/* ── 電離式データ ── */
+var DK_COMPOUNDS = [
+  { name:'塩化水素（塩酸）',  eq:'HCl &nbsp;→&nbsp; H<sup>+</sup> + Cl<sup>−</sup>',                                       note:'1 : 1 に分かれる',
+    distractors:['HCl &nbsp;→&nbsp; H<sup>−</sup> + Cl<sup>+</sup>','HCl &nbsp;→&nbsp; H<sup>+</sup> + Cl<sup>2−</sup>','HCl &nbsp;→&nbsp; 2H<sup>+</sup> + Cl<sup>2−</sup>'] },
+  { name:'塩化ナトリウム',    eq:'NaCl &nbsp;→&nbsp; Na<sup>+</sup> + Cl<sup>−</sup>',                                      note:'1 : 1 に分かれる',
+    distractors:['NaCl &nbsp;→&nbsp; Na<sup>2+</sup> + Cl<sup>2−</sup>','NaCl &nbsp;→&nbsp; Na<sup>+</sup> + Cl<sup>2−</sup>','NaCl &nbsp;→&nbsp; Na<sup>−</sup> + Cl<sup>+</sup>'] },
+  { name:'水酸化ナトリウム',  eq:'NaOH &nbsp;→&nbsp; Na<sup>+</sup> + OH<sup>−</sup>',                                     note:'OH<sup>−</sup> は水酸化物イオン',
+    distractors:['NaOH &nbsp;→&nbsp; Na<sup>+</sup> + OH<sup>2−</sup>','NaOH &nbsp;→&nbsp; Na<sup>2+</sup> + OH<sup>−</sup>','NaOH &nbsp;→&nbsp; 2Na<sup>+</sup> + OH<sup>2−</sup>'] },
+  { name:'塩化銅',           eq:'CuCl<sub>2</sub> &nbsp;→&nbsp; Cu<sup>2+</sup> + 2Cl<sup>−</sup>',                        note:'Cl<sup>−</sup> の係数は <strong>2</strong>！',
+    distractors:['CuCl<sub>2</sub> &nbsp;→&nbsp; Cu<sup>+</sup> + 2Cl<sup>−</sup>','CuCl<sub>2</sub> &nbsp;→&nbsp; Cu<sup>2+</sup> + Cl<sup>−</sup>','CuCl<sub>2</sub> &nbsp;→&nbsp; Cu<sup>2+</sup> + 2Cl<sup>2−</sup>'] },
+  { name:'硫酸銅',           eq:'CuSO<sub>4</sub> &nbsp;→&nbsp; Cu<sup>2+</sup> + SO<sub>4</sub><sup>2−</sup>',            note:'SO<sub>4</sub><sup>2−</sup> は硫酸イオン',
+    distractors:['CuSO<sub>4</sub> &nbsp;→&nbsp; Cu<sup>+</sup> + SO<sub>4</sub><sup>−</sup>','CuSO<sub>4</sub> &nbsp;→&nbsp; Cu<sup>2+</sup> + SO<sub>4</sub><sup>−</sup>','CuSO<sub>4</sub> &nbsp;→&nbsp; 2Cu<sup>+</sup> + SO<sub>4</sub><sup>2−</sup>'] },
+  { name:'水酸化バリウム',    eq:'Ba(OH)<sub>2</sub> &nbsp;→&nbsp; Ba<sup>2+</sup> + 2OH<sup>−</sup>',                     note:'OH<sup>−</sup> の係数は <strong>2</strong>！',
+    distractors:['Ba(OH)<sub>2</sub> &nbsp;→&nbsp; Ba<sup>2+</sup> + OH<sup>−</sup>','Ba(OH)<sub>2</sub> &nbsp;→&nbsp; Ba<sup>+</sup> + 2OH<sup>−</sup>','Ba(OH)<sub>2</sub> &nbsp;→&nbsp; Ba<sup>2+</sup> + 2OH<sup>2−</sup>'] },
+  { name:'硫酸',             eq:'H<sub>2</sub>SO<sub>4</sub> &nbsp;→&nbsp; 2H<sup>+</sup> + SO<sub>4</sub><sup>2−</sup>',  note:'H<sup>+</sup> の係数は <strong>2</strong>！',
+    distractors:['H<sub>2</sub>SO<sub>4</sub> &nbsp;→&nbsp; H<sup>+</sup> + SO<sub>4</sub><sup>2−</sup>','H<sub>2</sub>SO<sub>4</sub> &nbsp;→&nbsp; 2H<sup>+</sup> + SO<sub>4</sub><sup>−</sup>','H<sub>2</sub>SO<sub>4</sub> &nbsp;→&nbsp; 2H<sup>+</sup> + 2SO<sub>4</sub><sup>2−</sup>'] }
+];
+
+function dkShuffle(arr) {
+  var a = arr.slice();
+  for (var i = a.length-1; i > 0; i--) {
+    var j = Math.floor(Math.random()*(i+1));
+    var t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+function dkEl(id) { return document.getElementById('dk-' + id); }
+
+/* ══ フラッシュカード ══ */
+var DKF = { deck:[], current:0, ok:[], ng:[], dir:'name2eq', flipped:false, speed:0 };
+var dkFlipTimer = null, dkAdvTimer = null;
+
+function dkStopTimers() {
+  if (dkFlipTimer) { clearTimeout(dkFlipTimer); dkFlipTimer = null; }
+  if (dkAdvTimer)  { clearTimeout(dkAdvTimer);  dkAdvTimer  = null; }
+}
+function dkStartCD(ms) {
+  var f = dkEl('cdfill');
+  f.style.transition = 'none'; f.style.width = '100%';
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){
+    f.style.transition = 'width '+(ms/1000).toFixed(1)+'s linear';
+    f.style.width = '0%';
+  }); });
+}
+function dkResetCD() {
+  var f = dkEl('cdfill');
+  f.style.transition = 'none'; f.style.width = '100%';
+}
+function dkStartAuto() {
+  if (DKF.speed === 0) return;
+  dkStopTimers();
+  var half = Math.round(DKF.speed/2);
+  dkStartCD(DKF.speed);
+  dkFlipTimer = setTimeout(function(){
+    dkFlipTimer = null;
+    if (!DKF.flipped) dkDoFlip();
+    dkAdvTimer = setTimeout(function(){
+      dkAdvTimer = null;
+      dkAutoAdv();
+    }, half);
+  }, half);
+}
+function dkAutoAdv() {
+  dkStopTimers();
+  DKF.ok.push(DKF.deck[DKF.current]);
+  DKF.current++;
+  if (DKF.current >= DKF.deck.length) dkShowResult();
+  else { dkRenderCard(); dkUpdateProg(); dkStartAuto(); }
+}
+function dkInitFlash(retryNG) {
+  dkStopTimers();
+  var idx = retryNG ? DKF.ng.slice() : DK_COMPOUNDS.map(function(_,i){ return i; });
+  DKF.deck = dkShuffle(idx); DKF.current=0; DKF.ok=[]; DKF.ng=[]; DKF.flipped=false;
+  dkEl('fresult').style.display = 'none';
+  dkEl('scene').style.display   = '';
+  dkEl('fhint').style.display   = '';
+  dkEl('jarea').style.display   = 'none';
+  dkEl('rem').style.display     = '';
+  dkRenderCard(); dkUpdateProg();
+  if (DKF.speed > 0) dkStartAuto();
+}
+function dkRenderCard() {
+  var c = DK_COMPOUNDS[DKF.deck[DKF.current]];
+  var n2f = (DKF.dir === 'name2eq');
+  if (n2f) {
+    dkEl('flabel').textContent  = '電解質名';
+    dkEl('fcnt').className      = 'dk-cname';
+    dkEl('fcnt').textContent    = c.name;
+    dkEl('blabel').textContent  = '電離式';
+    dkEl('bcnt').className      = 'dk-ceqb';
+    dkEl('bcnt').innerHTML      = c.eq;
+    dkEl('bnote').className     = 'dk-cnote';
+    dkEl('bnote').innerHTML     = '💡 ' + c.note;
+  } else {
+    dkEl('flabel').textContent  = '電離式';
+    dkEl('fcnt').className      = 'dk-ceqf';
+    dkEl('fcnt').innerHTML      = c.eq;
+    dkEl('blabel').textContent  = '電解質名';
+    dkEl('bcnt').className      = 'dk-cname';
+    dkEl('bcnt').textContent    = c.name;
+    dkEl('bnote').className     = '';
+    dkEl('bnote').innerHTML     = '';
+  }
+  DKF.flipped = false;
+  var card = dkEl('card3d');
+  card.style.transition = 'none'; card.classList.remove('flipped');
+  setTimeout(function(){ card.style.transition = ''; }, 20);
+  dkEl('jarea').style.display   = 'none';
+  dkEl('fhint').style.visibility = '';
+  dkUpdateHint();
+  dkEl('rem').textContent = '残り ' + (DKF.deck.length - DKF.current) + ' 枚';
+}
+function dkDoFlip() {
+  DKF.flipped = true;
+  dkEl('card3d').classList.add('flipped');
+  dkEl('jarea').style.display    = 'flex';
+  dkEl('fhint').style.visibility = 'hidden';
+}
+function dkUpdateHint() {
+  if (DKF.speed > 0) {
+    dkEl('fhint').textContent = '自動めくり中… タップで今すぐめくる';
+    dkEl('fhint').style.color = '#FF8F00';
+  } else {
+    dkEl('fhint').textContent = '👆 タップしてめくる';
+    dkEl('fhint').style.color = '';
+  }
+}
+function dkUpdateProg() {
+  var total = DKF.deck.length, done = DKF.current;
+  var pct = total > 0 ? Math.round(done/total*100) : 0;
+  dkEl('pfill').style.width = pct + '%';
+  dkEl('ptxt').textContent  = done + ' / ' + total;
+}
+function dkShowResult() {
+  dkStopTimers();
+  dkEl('scene').style.display   = 'none';
+  dkEl('fhint').style.display   = 'none';
+  dkEl('jarea').style.display   = 'none';
+  dkEl('rem').style.display     = 'none';
+  dkEl('cdwrap').style.display  = 'none';
+  dkEl('pfill').style.width     = '100%';
+  var ok=DKF.ok.length, ng=DKF.ng.length, total=ok+ng;
+  var emoji=(ng===0)?'🎉':(ok>=total*.7?'👍':'📖');
+  var modeNote=(DKF.speed>0)?'<p style="font-size:11px;color:#90A4AE;margin-bottom:6px;">※自動モードは全カードを「わかった」として記録します</p>':'';
+  var ngHTML='';
+  if (ng>0) {
+    ngHTML='<div class="dk-nglist"><h3>🔴 もう一度覚えよう（'+ng+'個）</h3>';
+    DKF.ng.forEach(function(i){
+      ngHTML+='<div class="dk-ngitem"><div class="dk-ngname">'+DK_COMPOUNDS[i].name+'</div><div class="dk-ngeq">'+DK_COMPOUNDS[i].eq+'</div></div>';
+    });
+    ngHTML+='</div>';
+  }
+  var retryBtn=(ng>0)?'<button class="dk-jbtn dk-jng" style="margin-top:0;" onclick="DKDrill.initFlash(true)">🔴 苦手カードだけ再挑戦</button>':'';
+  dkEl('fresult').innerHTML='<div style="text-align:center;padding:8px 0;">'
+    +'<h2 style="font-size:18px;font-weight:800;color:#2E7D32;margin-bottom:8px;">'+emoji+'&ensp;結果</h2>'
+    +'<p style="font-size:20px;font-weight:800;color:#2E7D32;margin-bottom:8px;">'+ok+' / '+total+'　わかった！</p>'
+    +modeNote+ngHTML
+    +'<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:10px;">'
+    +retryBtn
+    +'<button class="dk-jbtn dk-jok" style="margin-top:0;" onclick="DKDrill.initFlash(false)">↻ 全カード最初から</button>'
+    +'</div></div>';
+  dkEl('fresult').style.display='';
+  dkUpdateProg();
+}
+function dkSetSpeed(ms) {
+  dkStopTimers(); DKF.speed=ms;
+  var map={0:'spd-manual',2000:'spd-2s',3000:'spd-3s',5000:'spd-5s'};
+  Object.keys(map).forEach(function(k){ dkEl(map[k]).classList.remove('active'); });
+  if (map[ms]) dkEl(map[ms]).classList.add('active');
+  dkEl('cdwrap').style.display=(ms>0)?'':'none';
+  if (!DKF.flipped) dkUpdateHint();
+  var rs=dkEl('fresult').style.display!=='none';
+  if (ms>0&&!rs) {
+    if (!DKF.flipped) { dkResetCD(); dkStartAuto(); }
+    else { dkStartCD(Math.round(ms/2)); dkAdvTimer=setTimeout(function(){ dkAdvTimer=null; dkAutoAdv(); },Math.round(ms/2)); }
+  } else if (ms===0) { dkResetCD(); }
+}
+function dkSetFlashDir(dir) {
+  DKF.dir=dir;
+  dkEl('dir-n2f').classList.toggle('active',dir==='name2eq');
+  dkEl('dir-f2n').classList.toggle('active',dir==='eq2name');
+  dkInitFlash(false);
+}
+
+/* ══ 4択クイズ ══ */
+var DKQ = { questions:[], current:0, score:0, dir:'name2eq' };
+
+function dkInitQuiz() {
+  var order=dkShuffle(DK_COMPOUNDS.map(function(_,i){ return i; }));
+  DKQ.questions=order.map(function(correct){
+    if (DKQ.dir==='name2eq') {
+      return { correct:correct, type:'name2eq', wrongEqs:dkShuffle(DK_COMPOUNDS[correct].distractors.slice()) };
+    } else {
+      var others=dkShuffle(DK_COMPOUNDS.map(function(_,i){ return i; }).filter(function(i){ return i!==correct; })).slice(0,3);
+      return { correct:correct, type:'eq2name', others:others };
+    }
+  });
+  DKQ.current=0; DKQ.score=0;
+  dkEl('qresult').style.display='none';
+  dkEl('qarea').style.display='';
+  dkRenderQuizQ();
+}
+function dkRenderQuizQ() {
+  var q=DKQ.questions[DKQ.current];
+  var c=DK_COMPOUNDS[q.correct];
+  dkEl('qcnt').textContent  ='問 '+(DKQ.current+1)+' / '+DKQ.questions.length;
+  dkEl('qscr').textContent  ='正解: '+DKQ.score;
+  var choicesEl=dkEl('qchoices');
+  choicesEl.innerHTML='';
+  if (q.type==='name2eq') {
+    dkEl('qstem').textContent    ='この電解質の電離式はどれか。';
+    dkEl('qmain').style.fontSize ='22px';
+    dkEl('qmain').textContent    =c.name;
+    var all=dkShuffle([{key:'correct',html:c.eq},{key:'w0',html:q.wrongEqs[0]},{key:'w1',html:q.wrongEqs[1]},{key:'w2',html:q.wrongEqs[2]}]);
+    all.forEach(function(ch){
+      var btn=document.createElement('button');
+      btn.className='dk-qc'; btn.innerHTML=ch.html; btn.dataset.key=ch.key;
+      btn.addEventListener('click',function(){ dkOnChoiceEq(ch.key,c); });
+      choicesEl.appendChild(btn);
+    });
+  } else {
+    dkEl('qstem').textContent    ='この電離式の電解質名はどれか。';
+    dkEl('qmain').style.fontSize ='16px';
+    dkEl('qmain').innerHTML      =c.eq;
+    dkShuffle([q.correct].concat(q.others)).forEach(function(idx){
+      var btn=document.createElement('button');
+      btn.className='dk-qc'; btn.textContent=DK_COMPOUNDS[idx].name; btn.dataset.idx=idx;
+      btn.addEventListener('click',function(){ dkOnChoiceName(idx,q.correct,c); });
+      choicesEl.appendChild(btn);
+    });
+  }
+  var exp=dkEl('qexp'); exp.className='dk-qexp'; exp.innerHTML='';
+  var nb=dkEl('qnext'); nb.className='dk-qnext';
+  nb.textContent=(DKQ.current+1<DKQ.questions.length)?'次の問題 ▶':'結果を見る ▶';
+}
+function dkOnChoiceEq(chosenKey,c) {
+  var ok=(chosenKey==='correct');
+  document.querySelectorAll('#dk-qchoices .dk-qc').forEach(function(b){
+    b.disabled=true;
+    if (b.dataset.key==='correct') b.classList.add('correct');
+    else if (b.dataset.key===chosenKey&&!ok) b.classList.add('incorrect');
+  });
+  if (ok) DKQ.score++;
+  var exp=dkEl('qexp');
+  exp.className='dk-qexp show'+(ok?'':' err');
+  exp.innerHTML=(ok?'✓ 正解！':'× 不正解。正解の電離式：')+'<br>'
+    +'<span style="font-size:12.5px;font-weight:800;color:'+(ok?'#2E7D32':'#1565C0')+';">'+c.eq+'</span>';
+  dkEl('qscr').textContent='正解: '+DKQ.score;
+  dkEl('qnext').className='dk-qnext show';
+}
+function dkOnChoiceName(chosen,correct,c) {
+  var ok=(chosen===correct);
+  document.querySelectorAll('#dk-qchoices .dk-qc').forEach(function(b){
+    b.disabled=true;
+    var i=parseInt(b.dataset.idx);
+    if (i===correct) b.classList.add('correct');
+    else if (i===chosen&&!ok) b.classList.add('incorrect');
+  });
+  if (ok) DKQ.score++;
+  var exp=dkEl('qexp');
+  exp.className='dk-qexp show'+(ok?'':' err');
+  exp.innerHTML=(ok?'✓ 正解！&emsp;<strong>':'× 不正解。正解：<strong>')+c.name+'</strong>'
+    +(ok?'':'<br><span style="font-size:12px;color:#1565C0;">'+c.eq+'</span>');
+  dkEl('qscr').textContent='正解: '+DKQ.score;
+  dkEl('qnext').className='dk-qnext show';
+}
+function dkNextQ() {
+  DKQ.current++;
+  if (DKQ.current>=DKQ.questions.length) dkShowQuizResult();
+  else dkRenderQuizQ();
+}
+function dkShowQuizResult() {
+  dkEl('qarea').style.display='none';
+  var s=DKQ.score,t=DKQ.questions.length,pct=Math.round(s/t*100);
+  var emoji,msg;
+  if (pct===100){emoji='🎉';msg='全問正解！完璧です！';}
+  else if(pct>=75){emoji='👍';msg='よくできました！あと少し！';}
+  else if(pct>=50){emoji='📖';msg='半分以上正解。もう一回やってみよう！';}
+  else{emoji='💪';msg='カードで練習してからもう一度チャレンジ！';}
+  dkEl('qresult').innerHTML='<div class="dk-qres">'
+    +'<div class="dk-bsc">'+s+'<span style="font-size:.4em;color:#90A4AE;">/'+t+'</span></div>'
+    +'<div class="dk-sub">正解率 '+pct+'%</div>'
+    +'<div class="dk-msg">'+emoji+'&ensp;'+msg+'</div>'
+    +'<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;">'
+    +'<button class="dk-jbtn dk-jok" style="margin-top:0;" onclick="DKDrill.initQuiz()">↻ もう一度</button>'
+    +'<button class="dk-jbtn dk-jng" style="margin-top:0;background:#1B5E20;" onclick="DKDrill.switchMode(\'flash\')">📇 カードで復習</button>'
+    +'</div></div>';
+  dkEl('qresult').style.display='';
+}
+function dkSetQuizDir(dir) {
+  DKQ.dir=dir;
+  dkEl('qdir-n2f').classList.toggle('active',dir==='name2eq');
+  dkEl('qdir-f2n').classList.toggle('active',dir==='eq2name');
+  dkInitQuiz();
+}
+function dkSwitchMode(mode) {
+  if (mode==='flash') dkStopTimers();
+  dkEl('flash-section').style.display=(mode==='flash')?'':'none';
+  dkEl('quiz-section').style.display =(mode==='quiz') ?'':'none';
+  dkEl('tab-flash').classList.toggle('active',mode==='flash');
+  dkEl('tab-quiz').classList.toggle('active', mode==='quiz');
+}
+
+/* ── 公開API ── */
+window.DKDrill = {
+  open: function(){
+    document.getElementById('dk-overlay').style.display='';
+    document.body.style.overflow='hidden';
+    if (DKF.deck.length===0){ dkInitFlash(false); dkInitQuiz(); }
+  },
+  close: function(){
+    dkStopTimers();
+    document.getElementById('dk-overlay').style.display='none';
+    document.body.style.overflow='';
+  },
+  flipCard: function(){
+    if (DKF.flipped) return;
+    if (dkFlipTimer){ clearTimeout(dkFlipTimer); dkFlipTimer=null; }
+    dkDoFlip();
+  },
+  judgeCard: function(ok){
+    dkStopTimers(); dkResetCD();
+    var idx=DKF.deck[DKF.current];
+    (ok?DKF.ok:DKF.ng).push(idx);
+    DKF.current++;
+    if (DKF.current>=DKF.deck.length) dkShowResult();
+    else { dkRenderCard(); dkUpdateProg(); if(DKF.speed>0) dkStartAuto(); }
+  },
+  initFlash:    dkInitFlash,
+  setFlashDir:  dkSetFlashDir,
+  setSpeed:     dkSetSpeed,
+  initQuiz:     dkInitQuiz,
+  nextQuizQ:    dkNextQ,
+  setQuizDir:   dkSetQuizDir,
+  switchMode:   dkSwitchMode
+};
+
+})();
+</script>
+</body>
+</html>
